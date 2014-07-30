@@ -1,3 +1,4 @@
+<?php //var_dump($dataProvider); ?>
 <h1>Зарегистрированные животные</h1>
 
 <div id="report_animals">
@@ -18,7 +19,7 @@
     			),
     			array(
 					'name'=>'Пол',
-					'value' => ($data->sex)?'Женский':'Мужской',
+					'value' => '($data->sex)?"Женский":"Мужской"',
 					'type' => 'raw'
 				),
 				array(
@@ -38,7 +39,7 @@
 				),
 				array(
 					'name'=>'Дата падежа',
-					'value' => ($data->date_death === '00-00-0000')?'-':'$data->date_death',
+					'value' => ('$data->date_death' === '00-00-0000')?'-':'$data->date_death',
 					'type' => 'raw'
 				),
     		),

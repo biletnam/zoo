@@ -43,6 +43,7 @@ class Priv extends CActiveRecord
 	{
 		return array(
 			'animal' => array(self::BELONGS_TO, 'Animal', 'id_animal'),
+			//'master' => array(self::BELONGS_TO, 'Master', 'id_animal'),
 		);
 	}
 

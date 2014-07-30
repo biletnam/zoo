@@ -1,5 +1,5 @@
 <h1>Прививки</h1>
-<?php var_dump($dataProvider);?>
+
 <div id="report_priv">
 	<?php  
 		$this->widget('zii.widgets.grid.CGridView', array(
@@ -7,41 +7,45 @@
     		'dataProvider' =>$dataProvider,
     		'columns' => array(
     			array(
+    				'name' => 'Дата',
+    				'value'=> '$data->date',
+    				'type' => 'raw'
+    			),
+    			array(
     				'name' => 'Кличка',
-    				'value'=> '$data->name',
+    				'value'=> '$data->animal->name',
     				'type' => 'raw'
     			),
     			array(
-    				'name' => 'Владелец',
-    				'value'=> '$data->master->lastname',
+    				'name' => 'Вид',
+    				'value'=> '$data->animal->type->name',
     				'type' => 'raw'
     			),
     			array(
-					'name'=>'Пол',
-					'value' => ($data->sex)?'Женский':'Мужской',
+					'name'=>'Тип',
+					'value' => '($data->crazy)?"Бешенство":"Обычная"',
 					'type' => 'raw'
 				),
 				array(
-					'name'=>'Вид',
-					'value' => '$data->type->name',
+					'name'=>'Сделано',
+					'value' => '($data->complete)?"Не сделано":"Сделано"',
 					'type' => 'raw'
 				),
 				array(
-					'name'=>'Регистрационный номер',
-					'value' => '$data->reg_num',
+					'name'=>'Владелец',
+					'value' => '$data->animal->master->lastname',
 					'type' => 'raw'
-				),
+				),				
 				array(
-					'name'=>'Дата регистрации',
-					'value' => '$data->date_reg',
+					'name'=>'Описание',
+					'value' => '$data->description',
 					'type' => 'raw'
-				),
-				array(
-					'name'=>'Дата падежа',
-					'value' => ($data->date_death === '00-00-0000')?'-':'$data->date_death',
-					'type' => 'raw'
-				),
+				),	
     		),
 		));
 	?>
+</div>
+<div class="print-button">
+	<?php echo CHtml::link('Печать', 
+				array(Yii::app()->request->pathInfo,'report_priv'=>$_POST['report_priv'])); ?>
 </div>

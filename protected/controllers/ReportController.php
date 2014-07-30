@@ -35,38 +35,50 @@ class ReportController extends Controller
 
 	public function actionPriv()
 	{
-		/*echo "<pre>";
-		var_dump($_POST);
-		echo "</pre>";*/
-
-		if (!isset($_POST['report_priv'])) {
+		
+		$request = Yii::app()->request;
+		$report_priv = $request->getParam('report_priv');
+		
+		if (!$report_priv) {
 			throw new CHttpException(400,'Неверный запрос');
 		}
-		
-		$report_priv = $_POST['report_priv'];
-
-		$criteria = new CDbCriteria();
-		$criteria->addCondition('crazy = :crazy');
 
 		
-
+		$criteria = new CDbCriteria(array('order'=>'date DESC'));		
+		
 		if ($report_priv == 'd') {			
+			$criteria->addCondition('crazy = :crazy');
 			$criteria->params = array('crazy'=>'0');
 		} elseif ($report_priv == 'crazy') {
+			$criteria->addCondition('crazy = :crazy');
 			$criteria->params = array('crazy'=>'1');
+		} elseif ($report_priv == 'all') {
+			$criteria->addInCondition('crazy', array('0','1'),'OR');
 		}
 
 		$privs = Priv::model()->findAll($criteria);
 
-		$dataProvider = new CArrayDataProvider($animals,
-							array('keyField' => 'id_priv','pagination'=>false,));
+		$dataProvider = new CArrayDataProvider($privs,
+							array('keyField' => 'id_priv',
+								  'pagination'=>false,));
+		//var_dump($dataProvider->getData());
+		if ($request->requestType == 'POST') {
+			$this->render('priv', array('dataProvider'=>$dataProvider));
+		} else {
+			$this->render('print', array('dataProvider'=>$dataProvider));
+		}
 
-		$this->render('priv', array('dataProvider'=>$dataProvider));
 	}
 
 	public function actionType()
 	{
-		$id_type = $_POST['report_type'];
+		if (!isset($_POST['report_type'])) {
+			//throw new CHttpException(400,'Неверный запрос');
+			$id_type = 0;
+		} else {
+			$id_type = $_POST['report_type'];
+		}
+		
 		
 		$criteria = new CDbCriteria();	
 
@@ -88,5 +100,10 @@ class ReportController extends Controller
 							array('keyField' => 'id_animal','pagination'=>false,));
 
 		$this->render('type', array('dataProvider'=>$dataProvider));
+	}
+
+	public function actionPrint()
+	{
+		$this->render('print');
 	}
 }
