@@ -114,7 +114,44 @@ class AnimalController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$transaction = Yii::app()->db->beginTransaction();
+
+		try {
+			$animal = $this->loadModel($id);			
+			
+			$privs = $animal->priv;
+					
+					if ($privs) {
+						foreach ($privs as $priv) {
+							$priv->delete();
+						}
+					}
+					$anemneses = $animal->anemnes;
+					if ($anemneses) {
+						foreach ($anemneses as $anemnes) {
+							$cures = $anemnes->cure;
+							if ($cures) {
+								foreach ($cures as $cure) $cure->delete();
+							}
+							$recomendations = $anemnes->recomendation;
+							if ($recomendations) {
+								foreach ($recomendations as $recomendation) $recomendation->delete();
+							}
+							$anemnes->delete();
+						}
+					}
+
+
+			$animal->delete();
+			$transaction->commit();
+
+		} catch(Exception $e) { 
+       		$transaction->rollback();
+       		$error = $e->getMessage();
+        }
+
+        $this->redirect(Yii::app()->createUrl('master/index'));
+		//$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

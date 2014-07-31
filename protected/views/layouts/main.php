@@ -37,8 +37,8 @@
 				array('label'=>'Типы животных', 'url'=>array('/type/index')),
 				array('label'=>'Отчеты', 'url'=>array('/report/index')),
 				array('label'=>'О программе', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Войти', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->

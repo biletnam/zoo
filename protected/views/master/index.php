@@ -15,9 +15,9 @@ $('.search-form form').submit(function(){
 ");
 
 
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Список владельцев животных',
-);
+);*/
 
 $this->menu=array(
 	array('label'=>'Добавить владельца', 'url'=>array('create')),

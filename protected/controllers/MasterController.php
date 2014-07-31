@@ -29,7 +29,7 @@ class MasterController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -111,7 +111,46 @@ class MasterController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$transaction = Yii::app()->db->beginTransaction();
+
+		try {
+			$master = $this->loadModel($id);
+			$animals = $master->animal;
+
+			if ($animals) {
+				foreach ($animals as $animal) {
+					$privs = $animal->priv;
+					if ($privs) {
+						foreach ($privs as $priv) {
+							$priv->delete();
+						}
+					}
+					$anemneses = $animal->anemnes;
+					if ($anemneses) {
+						foreach ($anemneses as $anemnes) {
+							$cures = $anemnes->cure;
+							if ($cures) {
+								foreach ($cures as $cure) $cure->delete();
+							}
+							$recomendations = $anemnes->recomendation;
+							if ($recomendations) {
+								foreach ($recomendations as $recomendation) $recomendation->delete();
+							}
+							$anemnes->delete();
+						}
+					}
+					$animal->delete();
+				}
+			}
+			$master->delete();
+			$transaction->commit();
+
+		} catch(Exception $e) { 
+       		$transaction->rollback();
+       		$error = $e->getMessage();
+        }
+
+        $this->redirect(Yii::app()->createUrl('master/index'));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

@@ -4,9 +4,10 @@
 /*$this->breadcrumbs=array(
 	'Main',
 );*/
+//var_dump($model);
 ?>
 <h1>Вход</h1>
 
 <div>
-	<?php $this->renderPartial("application.views.main", array('model'=>$model)); ?>
+	<?php $this->renderPartial("main", array('model'=>$model)); ?>
 </div>

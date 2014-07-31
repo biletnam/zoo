@@ -8,7 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Кабинет ветеринарного врача',
-	'defaultController' => 'master',
+	//'defaultController' => 'master',
+	'defaultController' => 'user',
 	'language' => 'ru',
 
 	// preloading 'log' component

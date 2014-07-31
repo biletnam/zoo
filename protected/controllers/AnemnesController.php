@@ -114,7 +114,30 @@ class AnemnesController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//$this->loadModel($id)->delete();
+		$transaction = Yii::app()->db->beginTransaction();
+
+		try {
+			$anemnes = $this->loadModel($id);			
+			
+			$cures = $anemnes->cure;
+			if ($cures) {
+				foreach ($cures as $cure) $cure->delete();
+			}
+			$recomendations = $anemnes->recomendation;
+			if ($recomendations) {
+				foreach ($recomendations as $recomendation) $recomendation->delete();
+			}
+			$anemnes->delete();
+
+			$transaction->commit();
+
+		} catch(Exception $e) { 
+       		$transaction->rollback();
+       		$error = $e->getMessage();
+        }
+
+        $this->redirect(Yii::app()->createUrl('master/index'));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

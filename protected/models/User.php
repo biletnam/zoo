@@ -11,12 +11,15 @@
  * @property string $lastname
  * @property string $password
  * @property string $description
+ * @property integer $id_medic
  */
 class User extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
+	private $_identity;
+
 	public function tableName()
 	{
 		return 'users';
@@ -30,11 +33,18 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('login, firstname, surname, lastname, password', 'length', 'max'=>50),
+			array('login, password', 'required'),
+			array('login, password', 'length', 'max'=>100, 'min' => 3),
+			array('login, firstname, surname, lastname', 'length', 'max'=>50),
 			array('description', 'length', 'max'=>255),
+			array('id_medic', 'numerical', 'integerOnly'=>true),
+			array('login', 'unique', 'caseSensitive'=>true, 'on'=>'login'),
+			array('login', 'match', 'pattern' => '/^[A-Za-z0-9А-Яа-я\s,]+$/u','message' => 'Логин содержит недопустимые символы.'),
+			//array('login, password', 'authenticate', 'on' => 'login'),
+			array('login, password', 'authenticate'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_user, login, firstname, surname, lastname, password, description', 'safe', 'on'=>'search'),
+			array('login, firstname, surname, lastname, password, description, id_medic', 'safe', 'on'=>'search, save'),
 		);
 	}
 
@@ -46,6 +56,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'medic' => array(self::HAS_ONE, 'Medic', 'id_medic'),
 		);
 	}
 
@@ -62,6 +73,7 @@ class User extends CActiveRecord
 			'lastname' => 'Фамилия',
 			'password' => 'Пароль',
 			'description' => 'Описание',
+			'id_medic' => 'Доктор',
 		);
 	}
 
@@ -90,6 +102,7 @@ class User extends CActiveRecord
 		$criteria->compare('lastname',$this->lastname,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('id_medic',$this->id_medic,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -106,4 +119,33 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function validatePassword($password)
+    {
+    	//var_dump($this->password);
+    	//var_dump($password);
+        return CPasswordHelper::verifyPassword($password, $this->password);
+    }
+ 
+    public function hashPassword($password)
+    {
+    	//var_dump($password);
+        return CPasswordHelper::hashPassword($password);
+    }
+
+    public function authenticate($attribute,$params) 
+    {
+    	var_dump($this);
+    	//if ($this->isNewRecord) return true;
+    	if(!$this->hasErrors())
+		{
+			$this->_identity = new UserIdentity($this->login, $this->password);
+			
+			if(!$this->_identity->authenticate()) {
+				$this->addError('password','Неверный логин или пароль.');				
+			} else {
+				Yii::app()->user->login($this->_identity, 0);
+			}
+		}
+    }
 }
