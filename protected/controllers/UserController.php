@@ -54,41 +54,20 @@ class UserController extends Controller
 	 */
 	public function actionLogin()
 	{
-		//$model = new LoginForm;
 		$form = new User;
 
 		if (!Yii::app()->user->isGuest) {
-            throw new CException('Вы уже зарегистрированы!');
+            $this->redirect(Yii::app()->createUrl('master/index'));
          } else {
             if (!empty($_POST['User'])) {
                 $form->attributes = $_POST['User'];
-                //var_dump($form);
-                //$form->verifyCode = $_POST['User']['verifyCode'];
-                //$model->scenario = 'test';
+                $form->scenario = 'login';
  				  if($form->validate()) {
                         $this->redirect(Yii::app()->createUrl('master/index'));
                   }
             } 
             $this->render('login', array('model' => $form));
         }
-
-		// if it is ajax validation request
-		/*if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}*/
-
-		// collect user input data
-		/*if(isset($_POST['User']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));*/
 	}
 
 	/**
@@ -110,15 +89,13 @@ class UserController extends Controller
         	if (!empty($_POST['User'])) {
 
         		$form->attributes = $_POST['User'];
-        		//svar_dump($form->attributes); 
-                //$form->verifyCode = $_POST['User']['verifyCode'];
+                $form->scenario = 'registration';
                  if($form->validate()) {
                  	 if ($form->model()->count("login = :login", array(':login' => $form->login))) {
                  	 	$form->addError('login', 'Логин уже занят');
                         $this->render("registration", array('model' => $form));
                  	 } else {
                  	 	$form->password = $form->hashPassword($form->password);
-                 	 	//var_dump($form);
                  	 	$form->save();
                         $this->render("registration_success");
                  	 }

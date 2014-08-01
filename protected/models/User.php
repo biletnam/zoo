@@ -35,13 +35,13 @@ class User extends CActiveRecord
 		return array(
 			array('login, password', 'required'),
 			array('login, password', 'length', 'max'=>100, 'min' => 3),
-			array('login, firstname, surname, lastname', 'length', 'max'=>50),
+			array('firstname, surname, lastname', 'length', 'max'=>50),
 			array('description', 'length', 'max'=>255),
 			array('id_medic', 'numerical', 'integerOnly'=>true),
-			array('login', 'unique', 'caseSensitive'=>true, 'on'=>'login'),
+			array('login', 'unique', 'caseSensitive'=>true, 'on'=>'registration'),
 			array('login', 'match', 'pattern' => '/^[A-Za-z0-9А-Яа-я\s,]+$/u','message' => 'Логин содержит недопустимые символы.'),
-			//array('login, password', 'authenticate', 'on' => 'login'),
-			array('login, password', 'authenticate'),
+			array('login, password', 'authenticate', 'on' => 'login'),
+			//array('login, password', 'authenticate'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('login, firstname, surname, lastname, password, description, id_medic', 'safe', 'on'=>'search, save'),
@@ -122,20 +122,18 @@ class User extends CActiveRecord
 
 	public function validatePassword($password)
     {
-    	//var_dump($this->password);
-    	//var_dump($password);
+
         return CPasswordHelper::verifyPassword($password, $this->password);
     }
  
     public function hashPassword($password)
     {
-    	//var_dump($password);
         return CPasswordHelper::hashPassword($password);
     }
 
-    public function authenticate($attribute,$params) 
+    public function authenticate($attribute,$params)
     {
-    	var_dump($this);
+    	//var_dump($this);
     	//if ($this->isNewRecord) return true;
     	if(!$this->hasErrors())
 		{
