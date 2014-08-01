@@ -9,12 +9,22 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+		'application.controllers.*',
+	),
+
 	// application components
 	'components'=>array(
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		// uncomment the following to use a MySQL database
+		'authManager'=>array(
+            'class'=>'CDbAuthManager',
+            'connectionID'=>'db',
+        ),
 		
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=zoo',

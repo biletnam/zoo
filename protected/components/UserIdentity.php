@@ -34,6 +34,7 @@ class UserIdentity extends CUserIdentity
             $this->_id = $user->id_user;
             $this->login = $user->login;
             $this->setState('lastname', $user->lastname);
+            $this->setState('role', $user->role);
             $this->errorCode = self::ERROR_NONE;
         }
         return !$this->errorCode;

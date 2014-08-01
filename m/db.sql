@@ -11,6 +11,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table zoo.anemneses
+DROP TABLE IF EXISTS `anemneses`;
 CREATE TABLE IF NOT EXISTS `anemneses` (
   `id_anemnes` int(11) NOT NULL AUTO_INCREMENT,
   `id_animal` int(11) NOT NULL,
@@ -25,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `anemneses` (
   KEY `id_animal` (`id_animal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.anemneses: ~8 rows (approximately)
+-- Dumping data for table zoo.anemneses: ~9 rows (approximately)
 DELETE FROM `anemneses`;
 /*!40000 ALTER TABLE `anemneses` DISABLE KEYS */;
 INSERT INTO `anemneses` (`id_anemnes`, `id_animal`, `date`, `description`, `summ`, `id_medic`, `temperature`, `color_sl`, `skin`) VALUES
@@ -41,6 +42,7 @@ INSERT INTO `anemneses` (`id_anemnes`, `id_animal`, `date`, `description`, `summ
 
 
 -- Dumping structure for table zoo.animals
+DROP TABLE IF EXISTS `animals`;
 CREATE TABLE IF NOT EXISTS `animals` (
   `id_animal` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -60,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `animals` (
   CONSTRAINT `fk_animals_types1` FOREIGN KEY (`id_type`) REFERENCES `types` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.animals: ~11 rows (approximately)
+-- Dumping data for table zoo.animals: ~12 rows (approximately)
 DELETE FROM `animals`;
 /*!40000 ALTER TABLE `animals` DISABLE KEYS */;
 INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, `date_reg`, `date_death`, `id_priv`, `id_master`, `description`) VALUES
@@ -78,7 +80,183 @@ INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, 
 /*!40000 ALTER TABLE `animals` ENABLE KEYS */;
 
 
+-- Dumping structure for table zoo.AuthAssignment
+DROP TABLE IF EXISTS `AuthAssignment`;
+CREATE TABLE IF NOT EXISTS `AuthAssignment` (
+  `itemname` varchar(64) NOT NULL,
+  `userid` varchar(64) NOT NULL,
+  `bizrule` text,
+  `data` text,
+  PRIMARY KEY (`itemname`,`userid`),
+  CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table zoo.AuthAssignment: ~0 rows (approximately)
+DELETE FROM `AuthAssignment`;
+/*!40000 ALTER TABLE `AuthAssignment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AuthAssignment` ENABLE KEYS */;
+
+
+-- Dumping structure for table zoo.AuthItem
+DROP TABLE IF EXISTS `AuthItem`;
+CREATE TABLE IF NOT EXISTS `AuthItem` (
+  `name` varchar(64) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text,
+  `bizrule` text,
+  `data` text,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table zoo.AuthItem: ~60 rows (approximately)
+DELETE FROM `AuthItem`;
+/*!40000 ALTER TABLE `AuthItem` DISABLE KEYS */;
+INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
+	('admin', 2, '', NULL, 'N;'),
+	('adminAnemnes', 0, 'AdminAnemnes', NULL, 'N;'),
+	('adminAnimal', 0, 'AdminAnimal', NULL, 'N;'),
+	('adminCure', 0, 'AdminCure', NULL, 'N;'),
+	('adminMaster', 0, 'AdminMaster', NULL, 'N;'),
+	('adminMedic', 0, 'AdminMedic', NULL, 'N;'),
+	('adminPriv', 0, 'AdminPriv', NULL, 'N;'),
+	('adminRecomendation', 0, 'AdminRecomendation', NULL, 'N;'),
+	('adminType', 0, 'AdminType', NULL, 'N;'),
+	('countAnimalReport', 0, 'CountAnimalReport', NULL, 'N;'),
+	('createAnemnes', 0, 'CreateAnemnes', NULL, 'N;'),
+	('createAnimal', 0, 'CreateAnimal', NULL, 'N;'),
+	('createCure', 0, 'CreateCure', NULL, 'N;'),
+	('createMaster', 0, 'CreateMaster', NULL, 'N;'),
+	('createMedic', 0, 'CreateMedic', NULL, 'N;'),
+	('createPriv', 0, 'CreatePriv', NULL, 'N;'),
+	('createRecomendation', 0, 'CreateRecomendation', NULL, 'N;'),
+	('createType', 0, 'CreateType', NULL, 'N;'),
+	('deleteAnemnes', 0, 'DeleteAnemnes', NULL, 'N;'),
+	('deleteAnimal', 0, 'DeleteAnimal', NULL, 'N;'),
+	('deleteCure', 0, 'DeleteCure', NULL, 'N;'),
+	('deleteMaster', 0, 'DeleteMaster', NULL, 'N;'),
+	('deleteMedic', 0, 'DeleteMedic', NULL, 'N;'),
+	('deletePriv', 0, 'DeletePriv', NULL, 'N;'),
+	('deleteRecomendation', 0, 'DeleteRecomendation', NULL, 'N;'),
+	('deleteType', 0, 'DeleteType', NULL, 'N;'),
+	('indexAnemnes', 0, 'IndexAnemnes', NULL, 'N;'),
+	('indexAnimal', 0, 'IndexAnimal', NULL, 'N;'),
+	('indexCure', 0, 'IndexCure', NULL, 'N;'),
+	('indexMaster', 0, 'IndexMaster', NULL, 'N;'),
+	('indexMedic', 0, 'IndexMedic', NULL, 'N;'),
+	('indexPriv', 0, 'IndexPriv', NULL, 'N;'),
+	('indexRecomendation', 0, 'IndexRecomendation', NULL, 'N;'),
+	('indexSearch', 0, 'IndexSearch', NULL, 'N;'),
+	('indexType', 0, 'IndexType', NULL, 'N;'),
+	('manageDatabase', 1, 'manageDatabase', NULL, 'N;'),
+	('manager', 2, '', NULL, 'N;'),
+	('manageUser', 1, 'manageUser', NULL, 'N;'),
+	('printReport', 0, 'PrintReport', NULL, 'N;'),
+	('privReport', 0, 'PrivReport', NULL, 'N;'),
+	('registrationUser', 0, 'RegistrationUser', NULL, 'N;'),
+	('typeReport', 0, 'TypeReport', NULL, 'N;'),
+	('updateAnemnes', 0, 'UpdateAnemnes', NULL, 'N;'),
+	('updateAnimal', 0, 'UpdateAnimal', NULL, 'N;'),
+	('updateCure', 0, 'UpdateCure', NULL, 'N;'),
+	('updateMaster', 0, 'UpdateMaster', NULL, 'N;'),
+	('updateMedic', 0, 'UpdateMedic', NULL, 'N;'),
+	('updatePriv', 0, 'UpdatePriv', NULL, 'N;'),
+	('updateRecomendation', 0, 'UpdateRecomendation', NULL, 'N;'),
+	('updateType', 0, 'UpdateType', NULL, 'N;'),
+	('user', 2, '', NULL, 'N;'),
+	('viewAnemnes', 0, 'ViewAnemnes1', NULL, 'N;'),
+	('viewAnimal', 0, 'ViewAnimal', NULL, 'N;'),
+	('viewCure', 0, 'ViewCure', NULL, 'N;'),
+	('viewDatabase', 1, 'viewDatabase', NULL, 'N;'),
+	('viewMaster', 0, 'ViewMaster', NULL, 'N;'),
+	('viewMedic', 0, 'ViewMedic', NULL, 'N;'),
+	('viewPriv', 0, 'ViewPriv', NULL, 'N;'),
+	('viewRecomendation', 0, 'ViewRecomendation', NULL, 'N;'),
+	('viewReports', 1, 'viewReports', NULL, 'N;'),
+	('viewType', 0, 'ViewType', NULL, 'N;');
+/*!40000 ALTER TABLE `AuthItem` ENABLE KEYS */;
+
+
+-- Dumping structure for table zoo.AuthItemChild
+DROP TABLE IF EXISTS `AuthItemChild`;
+CREATE TABLE IF NOT EXISTS `AuthItemChild` (
+  `parent` varchar(64) NOT NULL,
+  `child` varchar(64) NOT NULL,
+  PRIMARY KEY (`parent`,`child`),
+  KEY `child` (`child`),
+  CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table zoo.AuthItemChild: ~0 rows (approximately)
+DELETE FROM `AuthItemChild`;
+/*!40000 ALTER TABLE `AuthItemChild` DISABLE KEYS */;
+INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
+	('manageDatabase', 'adminAnemnes'),
+	('manageDatabase', 'adminAnimal'),
+	('manageDatabase', 'adminCure'),
+	('manageDatabase', 'adminMaster'),
+	('manageDatabase', 'adminMedic'),
+	('manageDatabase', 'adminPriv'),
+	('manageDatabase', 'adminRecomendation'),
+	('manageDatabase', 'adminType'),
+	('viewReports', 'countAnimalReport'),
+	('viewDatabase', 'createAnemnes'),
+	('viewDatabase', 'createAnimal'),
+	('viewDatabase', 'createCure'),
+	('viewDatabase', 'createMaster'),
+	('viewDatabase', 'createMedic'),
+	('viewDatabase', 'createPriv'),
+	('viewDatabase', 'createRecomendation'),
+	('viewDatabase', 'createType'),
+	('manageDatabase', 'deleteAnemnes'),
+	('manageDatabase', 'deleteAnimal'),
+	('manageDatabase', 'deleteCure'),
+	('manageDatabase', 'deleteMaster'),
+	('manageDatabase', 'deleteMedic'),
+	('manageDatabase', 'deletePriv'),
+	('manageDatabase', 'deleteRecomendation'),
+	('manageDatabase', 'deleteType'),
+	('viewDatabase', 'indexAnemnes'),
+	('viewDatabase', 'indexAnimal'),
+	('viewDatabase', 'indexCure'),
+	('viewDatabase', 'indexMaster'),
+	('viewDatabase', 'indexMedic'),
+	('viewDatabase', 'indexPriv'),
+	('viewDatabase', 'indexRecomendation'),
+	('viewDatabase', 'indexSearch'),
+	('viewDatabase', 'indexType'),
+	('manager', 'manageDatabase'),
+	('admin', 'manager'),
+	('admin', 'manageUser'),
+	('viewReports', 'printReport'),
+	('viewReports', 'privReport'),
+	('manageUser', 'registrationUser'),
+	('viewReports', 'typeReport'),
+	('manageDatabase', 'updateAnemnes'),
+	('manageDatabase', 'updateAnimal'),
+	('manageDatabase', 'updateCure'),
+	('manageDatabase', 'updateMaster'),
+	('manageDatabase', 'updateMedic'),
+	('manageDatabase', 'updatePriv'),
+	('manageDatabase', 'updateRecomendation'),
+	('manageDatabase', 'updateType'),
+	('manager', 'user'),
+	('viewDatabase', 'viewAnemnes'),
+	('viewDatabase', 'viewAnimal'),
+	('viewDatabase', 'viewCure'),
+	('manageDatabase', 'viewDatabase'),
+	('user', 'viewDatabase'),
+	('viewDatabase', 'viewMaster'),
+	('viewDatabase', 'viewMedic'),
+	('viewDatabase', 'viewPriv'),
+	('viewDatabase', 'viewRecomendation'),
+	('user', 'viewReports'),
+	('viewDatabase', 'viewType');
+/*!40000 ALTER TABLE `AuthItemChild` ENABLE KEYS */;
+
+
 -- Dumping structure for table zoo.cure
+DROP TABLE IF EXISTS `cure`;
 CREATE TABLE IF NOT EXISTS `cure` (
   `id_cure` int(10) NOT NULL AUTO_INCREMENT,
   `id_anemnes` int(10) DEFAULT NULL,
@@ -89,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `cure` (
   CONSTRAINT `FK_cure_anemneses` FOREIGN KEY (`id_anemnes`) REFERENCES `anemneses` (`id_anemnes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.cure: ~10 rows (approximately)
+-- Dumping data for table zoo.cure: ~11 rows (approximately)
 DELETE FROM `cure`;
 /*!40000 ALTER TABLE `cure` DISABLE KEYS */;
 INSERT INTO `cure` (`id_cure`, `id_anemnes`, `rp`, `ds`) VALUES
@@ -107,6 +285,7 @@ INSERT INTO `cure` (`id_cure`, `id_anemnes`, `rp`, `ds`) VALUES
 
 
 -- Dumping structure for table zoo.masters
+DROP TABLE IF EXISTS `masters`;
 CREATE TABLE IF NOT EXISTS `masters` (
   `id_master` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
@@ -121,9 +300,9 @@ CREATE TABLE IF NOT EXISTS `masters` (
   `telephone_3` varchar(45) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_master`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.masters: ~4 rows (approximately)
+-- Dumping data for table zoo.masters: ~5 rows (approximately)
 DELETE FROM `masters`;
 /*!40000 ALTER TABLE `masters` DISABLE KEYS */;
 INSERT INTO `masters` (`id_master`, `firstname`, `surname`, `lastname`, `city`, `street`, `n_home`, `n_apart`, `telephone_1`, `telephone_2`, `telephone_3`, `description`) VALUES
@@ -135,6 +314,7 @@ INSERT INTO `masters` (`id_master`, `firstname`, `surname`, `lastname`, `city`, 
 
 
 -- Dumping structure for table zoo.medics
+DROP TABLE IF EXISTS `medics`;
 CREATE TABLE IF NOT EXISTS `medics` (
   `id_medic` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) NOT NULL,
@@ -156,6 +336,7 @@ INSERT INTO `medics` (`id_medic`, `firstname`, `surname`, `lastname`, `descripti
 
 
 -- Dumping structure for table zoo.priv
+DROP TABLE IF EXISTS `priv`;
 CREATE TABLE IF NOT EXISTS `priv` (
   `id_priv` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
@@ -188,6 +369,7 @@ INSERT INTO `priv` (`id_priv`, `date`, `description`, `id_animal`, `complete`, `
 
 
 -- Dumping structure for table zoo.recomendations
+DROP TABLE IF EXISTS `recomendations`;
 CREATE TABLE IF NOT EXISTS `recomendations` (
   `id_recomendation` int(10) NOT NULL AUTO_INCREMENT,
   `id_anemnes` int(10) DEFAULT NULL,
@@ -198,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `recomendations` (
   CONSTRAINT `FK_recomendations_anemneses` FOREIGN KEY (`id_anemnes`) REFERENCES `anemneses` (`id_anemnes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.recomendations: ~5 rows (approximately)
+-- Dumping data for table zoo.recomendations: ~6 rows (approximately)
 DELETE FROM `recomendations`;
 /*!40000 ALTER TABLE `recomendations` DISABLE KEYS */;
 INSERT INTO `recomendations` (`id_recomendation`, `id_anemnes`, `rp`, `ds`) VALUES
@@ -211,6 +393,7 @@ INSERT INTO `recomendations` (`id_recomendation`, `id_anemnes`, `rp`, `ds`) VALU
 
 
 -- Dumping structure for table zoo.types
+DROP TABLE IF EXISTS `types`;
 CREATE TABLE IF NOT EXISTS `types` (
   `id_type` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -232,6 +415,7 @@ INSERT INTO `types` (`id_type`, `name`, `description`) VALUES
 
 
 -- Dumping structure for table zoo.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(10) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) NOT NULL DEFAULT '0',
@@ -241,21 +425,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL DEFAULT '0',
   `description` varchar(255) DEFAULT '0',
   `id_medic` int(10) DEFAULT NULL,
+  `role` int(10) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.users: ~8 rows (approximately)
+-- Dumping data for table zoo.users: ~9 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id_user`, `login`, `firstname`, `surname`, `lastname`, `password`, `description`, `id_medic`) VALUES
-	(1, 'admin', 'Дмитрий', 'Александрович', 'Галушко', 'j789789', 'admin', NULL),
-	(2, 'medic', 'Марина', 'Владимировна', 'Галушко', '111111', 'medic', 1),
-	(3, 'medic1', 'Иван', 'Иванович', 'Иванов', '222222', 'medic1', 3),
-	(9, 'admin1', '0', '0', '0', 'j789789', '0', NULL),
-	(10, 'tyjtyj', '0', '0', '0', 'tyjtyjtyj', '0', NULL),
-	(11, 'ghnghn', '0', '0', '0', '$2a$13$nwDcwZiEgBuUJ0r2loEPTeSM/lOZLvBgAm3xKv8kQYAQuGNeZ9SMi', '0', NULL),
-	(12, 'test', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL),
-	(13, 'asasasas', '0', '0', '0', '$2a$13$jy8Unio1mFp9uhuIWgkW/uk3pLYVYpq0iWRv6KMcJkxiHvn.HOY5e', '0', NULL);
+INSERT INTO `users` (`id_user`, `login`, `firstname`, `surname`, `lastname`, `password`, `description`, `id_medic`, `role`) VALUES
+	(1, 'admin', 'Дмитрий', 'Александрович', 'Галушко', 'j789789', 'admin', NULL, NULL),
+	(2, 'medic', 'Марина', 'Владимировна', 'Галушко', '111111', 'medic', 1, NULL),
+	(3, 'medic1', 'Иван', 'Иванович', 'Иванов', '222222', 'medic1', 3, NULL),
+	(9, 'admin1', '0', '0', '0', 'j789789', '0', NULL, NULL),
+	(10, 'tyjtyj', '0', '0', '0', 'tyjtyjtyj', '0', NULL, NULL),
+	(11, 'ghnghn', '0', '0', '0', '$2a$13$nwDcwZiEgBuUJ0r2loEPTeSM/lOZLvBgAm3xKv8kQYAQuGNeZ9SMi', '0', NULL, NULL),
+	(12, 'test', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL, 10),
+	(13, 'asasasas', '0', '0', '0', '$2a$13$jy8Unio1mFp9uhuIWgkW/uk3pLYVYpq0iWRv6KMcJkxiHvn.HOY5e', '0', NULL, NULL),
+	(14, 'dima', 'Дмитрий', 'Александрович', 'Галушко', '$2a$13$Lq4HXA3M4SeraEWuWH2Rj.oaT9oaP5ova1gT6HCX9UuCLqWsDy2Ie', 'admin of this site', NULL, 15);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

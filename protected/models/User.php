@@ -37,14 +37,14 @@ class User extends CActiveRecord
 			array('login, password', 'length', 'max'=>100, 'min' => 3),
 			array('firstname, surname, lastname', 'length', 'max'=>50),
 			array('description', 'length', 'max'=>255),
-			array('id_medic', 'numerical', 'integerOnly'=>true),
+			array('id_medic, role', 'numerical', 'integerOnly'=>true),
 			array('login', 'unique', 'caseSensitive'=>true, 'on'=>'registration'),
 			array('login', 'match', 'pattern' => '/^[A-Za-z0-9А-Яа-я\s,]+$/u','message' => 'Логин содержит недопустимые символы.'),
 			array('login, password', 'authenticate', 'on' => 'login'),
 			//array('login, password', 'authenticate'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('login, firstname, surname, lastname, password, description, id_medic', 'safe', 'on'=>'search, save'),
+			array('login, firstname, surname, lastname, password, description, id_medic, role', 'safe', 'on'=>'search, save'),
 		);
 	}
 
@@ -74,6 +74,7 @@ class User extends CActiveRecord
 			'password' => 'Пароль',
 			'description' => 'Описание',
 			'id_medic' => 'Доктор',
+			'role' => 'Доступ',
 		);
 	}
 
@@ -103,6 +104,7 @@ class User extends CActiveRecord
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('id_medic',$this->id_medic,true);
+		$criteria->compare('role',$this->role,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
