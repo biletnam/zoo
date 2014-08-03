@@ -24,9 +24,9 @@ $this->menu=array(
 );
 
 
-echo "<h1>Владельцы животных</h1>";
+echo "<h3>Владельцы животных</h3>";
 
-echo CHtml::link('Поиск','#',array('class'=>'search-button'));
+echo CHtml::link('Поиск','#',array('class'=>'search-button btn btn-info'));
 echo "<div class='search-form' style='display:none'>";
 	$model_master = new Master("search");
 	$model_master->unsetAttributes(); 

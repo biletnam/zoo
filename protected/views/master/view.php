@@ -17,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Данные владельца животных</h1>
+<h2>Данные владельца животных</h2>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -19,8 +19,23 @@
 	<?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 	<?php Yii::app()->clientScript->registerCoreScript('jquery.ui');?>
 	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/styles.css');?>
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/bootstrap.min.css');?>
 </head>
-
+<style type="text/css">
+   body { 
+    background-image: url(../images/login_bg.jpg);
+   }
+   #page {
+   	background: none;
+   	border:none;
+   }
+   #header {
+   	border:none;
+   }
+   #logo {
+   	padding: 20px 0px;
+   }
+  </style>
 <body>
 
 <div class="container" id="page">

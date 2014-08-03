@@ -20,6 +20,7 @@
 	<?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 	<?php Yii::app()->clientScript->registerCoreScript('jquery.ui');?>
 	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/styles.css');?>
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/bootstrap.min.css');?>
 </head>
 
 <body>
@@ -41,6 +42,9 @@
 				array('label'=>'Войти', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
+			'htmlOptions' => array(
+                    'class'=>'nav nav-pills',
+                        ),
 		)); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
