@@ -84,7 +84,8 @@ class UserController extends Controller
 		$form = new User();
 
 		if (!Yii::app()->user->isGuest) {
-             throw new CException('Вы уже зарегистрированны!');
+             //throw new CException('Вы уже зарегистрированны!');
+			$this->redirect(Yii::app()->createUrl('master/index'));
         } else {
         	if (!empty($_POST['User'])) {
 

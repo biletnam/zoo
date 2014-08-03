@@ -32,7 +32,8 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Главная', 'url'=>array('/')),
+				//array('label'=>'Главная', 'url'=>array('/')),
+				array('label'=>'Главная', 'url'=>array('/master/index')),
 				array('label'=>'Доктора', 'url'=>array('/medic/index')),
 				array('label'=>'Типы животных', 'url'=>array('/type/index')),
 				array('label'=>'Отчеты', 'url'=>array('/report/index')),
@@ -44,7 +45,7 @@
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'homeLink'=>CHtml::link('Главная', array("/")),
+			'homeLink'=>CHtml::link('Главная', array("/master/index")),
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>

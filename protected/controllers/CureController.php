@@ -51,9 +51,13 @@ class CureController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if (Yii::app()->user->checkAccess('viewCure')) {
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -62,25 +66,25 @@ class CureController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model = new Cure;
+		if (Yii::app()->user->checkAccess('createCure')) {
+			$model = new Cure;
 
-		$id_anemnes = ($_GET['id_anemnes']);
+			$id_anemnes = ($_GET['id_anemnes']);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Cure']))
+			{
+				$model->attributes=$_POST['Cure'];
+				if($model->save())
+					$this->redirect(array('anemnes/view','id'=>$id_anemnes));
+			}
 
-		if(isset($_POST['Cure']))
-		{
-			$model->attributes=$_POST['Cure'];
-			if($model->save())
-				//$this->redirect(array('view','id'=>$model->id_cure));
-				$this->redirect(array('anemnes/view','id'=>$id_anemnes));
+			$this->render('create',array(
+				'model'=>$model,
+				'anemnes'=>$id_anemnes,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-			'anemnes'=>$id_anemnes,
-		));
 	}
 
 	/**
@@ -90,23 +94,24 @@ class CureController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		if (Yii::app()->user->checkAccess('updateCure')) {
+			$model=$this->loadModel($id);
 
-		$id_anemnes = ($_GET['id_anemnes']);
+			$id_anemnes = ($_GET['id_anemnes']);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Cure']))
+			{
+				$model->attributes=$_POST['Cure'];
+				if($model->save())
+					$this->redirect(array('anemnes/view','id'=>$model->id_anemnes));
+			}
 
-		if(isset($_POST['Cure']))
-		{
-			$model->attributes=$_POST['Cure'];
-			if($model->save())
-				$this->redirect(array('anemnes/view','id'=>$model->id_anemnes));
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -116,11 +121,14 @@ class CureController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if (Yii::app()->user->checkAccess('deleteCure')) {
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -128,10 +136,14 @@ class CureController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Cure');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->checkAccess('indexCure')) {
+			$dataProvider=new CActiveDataProvider('Cure');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -139,14 +151,18 @@ class CureController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Cure('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Cure']))
-			$model->attributes=$_GET['Cure'];
+		if (Yii::app()->user->checkAccess('adminCure')) {
+			$model=new Cure('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Cure']))
+				$model->attributes=$_GET['Cure'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**

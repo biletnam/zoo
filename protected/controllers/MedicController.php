@@ -51,9 +51,13 @@ class MedicController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if (Yii::app()->user->checkAccess('viewMedic')) {
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -62,21 +66,22 @@ class MedicController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Medic;
+		if (Yii::app()->user->checkAccess('createMedic')) {
+			$model=new Medic;
+			
+			if(isset($_POST['Medic']))
+			{
+				$model->attributes=$_POST['Medic'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_medic));
+			}
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Medic']))
-		{
-			$model->attributes=$_POST['Medic'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_medic));
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -86,21 +91,22 @@ class MedicController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		if (Yii::app()->user->checkAccess('updateMedic')) {
+			$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Medic']))
+			{
+				$model->attributes=$_POST['Medic'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_medic));
+			}
 
-		if(isset($_POST['Medic']))
-		{
-			$model->attributes=$_POST['Medic'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_medic));
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -110,11 +116,14 @@ class MedicController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if (Yii::app()->user->checkAccess('deleteMedic')) {
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -122,10 +131,14 @@ class MedicController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Medic');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->checkAccess('indexMedic')) {
+			$dataProvider=new CActiveDataProvider('Medic');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -133,14 +146,18 @@ class MedicController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Medic('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Medic']))
-			$model->attributes=$_GET['Medic'];
+		if (Yii::app()->user->checkAccess('adminMedic')) {
+			$model=new Medic('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Medic']))
+				$model->attributes=$_GET['Medic'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**

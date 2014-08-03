@@ -35,9 +35,9 @@ class User extends CActiveRecord
 		return array(
 			array('login, password', 'required'),
 			array('login, password', 'length', 'max'=>100, 'min' => 3),
-			array('firstname, surname, lastname', 'length', 'max'=>50),
+			array('firstname, surname, lastname, role', 'length', 'max'=>50),
 			array('description', 'length', 'max'=>255),
-			array('id_medic, role', 'numerical', 'integerOnly'=>true),
+			array('id_medic', 'numerical', 'integerOnly'=>true),
 			array('login', 'unique', 'caseSensitive'=>true, 'on'=>'registration'),
 			array('login', 'match', 'pattern' => '/^[A-Za-z0-9А-Яа-я\s,]+$/u','message' => 'Логин содержит недопустимые символы.'),
 			array('login, password', 'authenticate', 'on' => 'login'),
@@ -135,8 +135,6 @@ class User extends CActiveRecord
 
     public function authenticate($attribute,$params)
     {
-    	//var_dump($this);
-    	//if ($this->isNewRecord) return true;
     	if(!$this->hasErrors())
 		{
 			$this->_identity = new UserIdentity($this->login, $this->password);
@@ -147,5 +145,16 @@ class User extends CActiveRecord
 				Yii::app()->user->login($this->_identity, 0);
 			}
 		}
+    }
+
+    public function afterSave() {
+        $assignments = Yii::app()->authManager->getAuthAssignments($this->id_user);
+        if (!empty($assignments)) {
+            foreach ($assignments as $key => $assignment) {
+                Yii::app()->authManager->revoke($key, $this->id_user);
+            }
+        }
+        Yii::app()->authManager->assign($this->role, $this->id_user);
+        return parent::afterSave();
     }
 }

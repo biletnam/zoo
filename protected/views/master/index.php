@@ -17,7 +17,12 @@ $('.search-form form').submit(function(){
 //var_dump(Yii::app()->user->id);
 //var_dump(Yii::app()->user->name);
 //var_dump(Yii::app()->user->getState('role'));
-//var_dump(Yii::app()->authManager);
+//Yii::app()->authManager->assign(Yii::app()->user->getState('role'), Yii::app()->user->id);
+//var_dump(Yii::app()->authManager->getAuthAssignments( Yii::app()->user->id));
+//echo "<pre>";
+//CVarDumper::dump(Yii::app()->authManager,20,true);
+//echo "</pre>";
+
 /*$this->breadcrumbs=array(
 	'Список владельцев животных',
 );*/

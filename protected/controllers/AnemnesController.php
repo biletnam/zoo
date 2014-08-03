@@ -51,9 +51,13 @@ class AnemnesController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if (Yii::app()->user->checkAccess('viewAnemnes')) {
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -62,25 +66,27 @@ class AnemnesController extends Controller
 	 */
 	public function actionCreate($id_animal)
 	{
-		$model=new Anemnes;
+		if (Yii::app()->user->checkAccess('createAnemnes')) {
+			
+			$model=new Anemnes;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		//var_dump($id_animal);
-		$id_animal = (int)$id_animal;
+			$id_animal = (int)$id_animal;
 
-		if(isset($_POST['Anemnes']))
-		{
-			$model->attributes=$_POST['Anemnes'];
+			if(isset($_POST['Anemnes']))
+			{
+				$model->attributes=$_POST['Anemnes'];
 
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_anemnes));
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_anemnes));
+			}
+
+			$this->render('create',array(
+				'model'=>$model,
+				'animal'=>$id_animal,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-			'animal'=>$id_animal,
-		));
 	}
 
 	/**
@@ -90,21 +96,23 @@ class AnemnesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		if (Yii::app()->user->checkAccess('updateAnemnes')) {
+			
+			$model=$this->loadModel($id);
+			
+			if(isset($_POST['Anemnes']))
+			{
+				$model->attributes=$_POST['Anemnes'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_anemnes));
+			}
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Anemnes']))
-		{
-			$model->attributes=$_POST['Anemnes'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_anemnes));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}	
 	}
 
 	/**
@@ -114,34 +122,36 @@ class AnemnesController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		//$this->loadModel($id)->delete();
-		$transaction = Yii::app()->db->beginTransaction();
+		if (Yii::app()->user->checkAccess('deleteAnemnes')) {
+			$transaction = Yii::app()->db->beginTransaction();
 
-		try {
-			$anemnes = $this->loadModel($id);			
-			
-			$cures = $anemnes->cure;
-			if ($cures) {
-				foreach ($cures as $cure) $cure->delete();
-			}
-			$recomendations = $anemnes->recomendation;
-			if ($recomendations) {
-				foreach ($recomendations as $recomendation) $recomendation->delete();
-			}
-			$anemnes->delete();
+			try {
+				$anemnes = $this->loadModel($id);			
+				
+				$cures = $anemnes->cure;
+				if ($cures) {
+					foreach ($cures as $cure) $cure->delete();
+				}
+				$recomendations = $anemnes->recomendation;
+				if ($recomendations) {
+					foreach ($recomendations as $recomendation) $recomendation->delete();
+				}
+				$anemnes->delete();
 
-			$transaction->commit();
+				$transaction->commit();
 
-		} catch(Exception $e) { 
-       		$transaction->rollback();
-       		$error = $e->getMessage();
-        }
+			} catch(Exception $e) { 
+	       		$transaction->rollback();
+	       		$error = $e->getMessage();
+	        }
 
-        $this->redirect(Yii::app()->createUrl('master/index'));
+	        $this->redirect(Yii::app()->createUrl('master/index'));
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		} else {
+			throw new CHttpException(403, 'Нет доступа');
+		}	
 	}
 
 	/**
@@ -149,10 +159,14 @@ class AnemnesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Anemnes');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->checkAccess('indexAnemnes')) {
+			$dataProvider=new CActiveDataProvider('Anemnes');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -160,14 +174,18 @@ class AnemnesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Anemnes('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Anemnes']))
-			$model->attributes=$_GET['Anemnes'];
+		if (Yii::app()->user->checkAccess('adminAnemnes')) {
+			$model=new Anemnes('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Anemnes']))
+				$model->attributes=$_GET['Anemnes'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(403, 'Нет доступа');
+		}		
 	}
 
 	/**

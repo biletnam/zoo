@@ -51,9 +51,13 @@ class PrivController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if (Yii::app()->user->checkAccess('viewPriv')) {
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -62,23 +66,24 @@ class PrivController extends Controller
 	 */
 	public function actionCreate($id_animal)
 	{
-		$model=new Priv;
-		$id_animal = (int)$id_animal;
+		if (Yii::app()->user->checkAccess('createPriv')) {
+			$model=new Priv;
+			$id_animal = (int)$id_animal;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Priv']))
+			{			
+				$model->attributes=$_POST['Priv'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_priv));
+			}
 
-		if(isset($_POST['Priv']))
-		{			
-			$model->attributes=$_POST['Priv'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_priv));
+			$this->render('create',array(
+				'model'=>$model,
+				'animal'=>$id_animal,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-			'animal'=>$id_animal,
-		));
 	}
 
 	/**
@@ -88,21 +93,22 @@ class PrivController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		if (Yii::app()->user->checkAccess('updatePriv')) {
+			$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Priv']))
+			{			
+				$model->attributes=$_POST['Priv'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id_priv));
+			}
 
-		if(isset($_POST['Priv']))
-		{			
-			$model->attributes=$_POST['Priv'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_priv));
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -112,11 +118,14 @@ class PrivController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if (Yii::app()->user->checkAccess('deletePriv')) {
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -124,10 +133,14 @@ class PrivController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Priv');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->checkAccess('indexPriv')) {
+			$dataProvider=new CActiveDataProvider('Priv');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -135,14 +148,18 @@ class PrivController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Priv('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Priv']))
-			$model->attributes=$_GET['Priv'];
+		if (Yii::app()->user->checkAccess('adminPriv')) {
+			$model=new Priv('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Priv']))
+				$model->attributes=$_GET['Priv'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**

@@ -52,6 +52,15 @@
         <?php echo $form->dropDownList($model,'id_medic',$list, array('empty'=>'Выберите фамилию')); ?>
     </div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'role'); ?>
+        <?php $role =  array('user' => 'Пользователь', 
+                             'manager' => 'Менеджер', 
+                             'admn' => 'Администратор'); ?>
+        <?php echo $form->dropDownList($model,'role',$role); ?>                             
+        <?php echo $form->error($model,'role'); ?>
+    </div>
+
     <div class="row buttons">
         <?php echo CHtml::submitButton('Зарегистрироваться'); ?>
         <?php echo CHtml::resetButton('Очистить'); ?>

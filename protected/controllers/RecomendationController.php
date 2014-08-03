@@ -51,9 +51,13 @@ class RecomendationController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if (Yii::app()->user->checkAccess('viewRecomendation')) {
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -62,25 +66,26 @@ class RecomendationController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Recomendation;
+		if (Yii::app()->user->checkAccess('createRecomendation')) {
+			$model=new Recomendation;
 
-		$id_anemnes = ($_GET['id_anemnes']);
+			$id_anemnes = ($_GET['id_anemnes']);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Recomendation']))
+			{
+				$model->attributes=$_POST['Recomendation'];
+				if($model->save())
+					//$this->redirect(array('view','id'=>$model->id_recomendation));
+					$this->redirect(array('anemnes/view','id'=>$id_anemnes));
+			}
 
-		if(isset($_POST['Recomendation']))
-		{
-			$model->attributes=$_POST['Recomendation'];
-			if($model->save())
-				//$this->redirect(array('view','id'=>$model->id_recomendation));
-				$this->redirect(array('anemnes/view','id'=>$id_anemnes));
+			$this->render('create',array(
+				'model'=>$model,
+				'anemnes'=>$id_anemnes,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-			'anemnes'=>$id_anemnes,
-		));
 	}
 
 	/**
@@ -90,23 +95,24 @@ class RecomendationController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		if (Yii::app()->user->checkAccess('updateRecomendation')) {
+			$model=$this->loadModel($id);
 
-		$id_anemnes = ($_GET['id_anemnes']);
+			$id_anemnes = ($_GET['id_anemnes']);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+			if(isset($_POST['Recomendation']))
+			{
+				$model->attributes=$_POST['Recomendation'];
+				if($model->save())
+					$this->redirect(array('anemnes/view','id'=>$model->id_anemnes));
+			}
 
-		if(isset($_POST['Recomendation']))
-		{
-			$model->attributes=$_POST['Recomendation'];
-			if($model->save())
-				$this->redirect(array('anemnes/view','id'=>$model->id_anemnes));
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
 	}
 
 	/**
@@ -116,11 +122,14 @@ class RecomendationController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if (Yii::app()->user->checkAccess('deleteRecomendation')) {
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -128,10 +137,14 @@ class RecomendationController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Recomendation');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->checkAccess('indexRecomendation')) {
+			$dataProvider=new CActiveDataProvider('Recomendation');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
@@ -139,14 +152,18 @@ class RecomendationController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Recomendation('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Recomendation']))
-			$model->attributes=$_GET['Recomendation'];
+		if (Yii::app()->user->checkAccess('adminRecomendation')) {
+			$model=new Recomendation('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['Recomendation']))
+				$model->attributes=$_GET['Recomendation'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	/**
