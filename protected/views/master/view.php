@@ -47,4 +47,4 @@ $this->menu=array(
             'animals'=>$model->animal,
         )); ?>
     <?php endif; ?>
-<div>
+</div>

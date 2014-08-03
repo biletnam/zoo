@@ -69,7 +69,7 @@ $this->menu=array(
             'animal'=>$model->id_animal,
         )); ?>
     <?php endif; ?>
-<div>
+</div>
 
 <div id='priv-grid'>
 	<?php if(count($model->priv)>=1): ?>
@@ -83,4 +83,4 @@ $this->menu=array(
             'animal'=>$model->id_animal,
         )); ?>
     <?php endif; ?>
-<div>
+</div>
