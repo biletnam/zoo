@@ -16,6 +16,6 @@ $this->menu=array(
 );
 */?>
 
-<h1>Изменить лечение<?php //echo $model->id_cure; ?></h1>
+<h3>Изменить лечение<?php //echo $model->id_cure; ?></h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Просмотр данных о типе животных <?php //echo $model->id_type; ?></h1>
+<h3>Просмотр данных о типе животных <?php //echo $model->id_type; ?></h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

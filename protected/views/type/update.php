@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Изменить данные о типе животных <?php //echo $model->id_type; ?></h1>
+<h3>Изменить данные о типе животных</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

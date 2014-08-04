@@ -10,42 +10,40 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for zoo
-CREATE DATABASE IF NOT EXISTS `zoo` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `zoo`;
-
-
 -- Dumping structure for table zoo.anemneses
+DROP TABLE IF EXISTS `anemneses`;
 CREATE TABLE IF NOT EXISTS `anemneses` (
   `id_anemnes` int(11) NOT NULL AUTO_INCREMENT,
   `id_animal` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` longtext NOT NULL,
-  `summ` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `summ` float NOT NULL,
   `id_medic` int(11) NOT NULL,
-  `temperature` decimal(10,1) unsigned NOT NULL,
+  `temperature` float unsigned NOT NULL,
   `color_sl` varchar(255) NOT NULL,
   `skin` varchar(255) NOT NULL,
   PRIMARY KEY (`id_anemnes`),
   KEY `id_animal` (`id_animal`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.anemneses: ~8 rows (approximately)
+-- Dumping data for table zoo.anemneses: ~9 rows (approximately)
 DELETE FROM `anemneses`;
 /*!40000 ALTER TABLE `anemneses` DISABLE KEYS */;
 INSERT INTO `anemneses` (`id_anemnes`, `id_animal`, `date`, `description`, `summ`, `id_medic`, `temperature`, `color_sl`, `skin`) VALUES
-	(1, 2, '2014-02-14', '2222222222222222222222222222222222222', 26.00, 1, 10.0, 'colorrrrr', 'skinnnnnds'),
-	(2, 3, '2013-12-29', '333333333333333333333цуацуацуацуацуацуацуац3ауцауа', 35.00, 2, 0.0, '', ''),
-	(3, 4, '2014-03-08', '444444444444444444цуацуацуацуацуацуа', 184.00, 1, 10.0, '', ''),
-	(4, 2, '2014-01-29', '2-2-2-2-2-2-2-2-2-2-111111111111111111111111111111111111111111111', 48.60, 1, 36.7, 'fwefwf', 'ewfwef'),
-	(78, 2, '2002-06-20', 'qewfefwe11111111111111111', 4341.89, 2, 10.0, '34tgrdgerg11', 'ergergreg11111111'),
-	(79, 9, '2002-06-20', 'opisnie', 48.95, 3, 37.0, 'blue', 'good'),
-	(80, 13, '2014-07-01', 'Какая-то хрень', 21.80, 3, 36.6, '', ''),
-	(82, 6, '2014-07-21', 'ofsojhjpokbpkcvp[[pbkbkbk', 4565.00, 1, 36.6, '', '');
+	(1, 2, '2014-02-14', '2222222222222222222222222222222222222', 26, 1, 0.99, 'colorrrrr', 'skinnnnnds'),
+	(2, 3, '2013-12-29', '333333333333333333333цуацуацуацуацуацуацуац3ауцауа', 35, 2, 0, '', ''),
+	(3, 4, '2014-03-08', '444444444444444444цуацуацуацуацуацуа', 184, 1, 0.99, '', ''),
+	(4, 2, '2014-01-29', '2-2-2-2-2-2-2-2-2-2-111111111111111111111111111111111111111111111', 48.6, 1, 0.99, 'fwefwf', 'ewfwef'),
+	(78, 2, '2002-06-20', 'qewfefwe11111111111111111', 4341.89, 2, 0.99, '34tgrdgerg11', 'ergergreg11111111'),
+	(79, 9, '2002-06-20', 'opisnie', 48.95, 3, 0.99, 'blue', 'good'),
+	(80, 13, '2014-07-01', 'Какая-то хрень', 21.8, 3, 0.99, '', ''),
+	(82, 6, '2014-07-21', 'ofsojhjpokbpkcvp[[pbkbkbk', 4565, 1, 0.99, '', ''),
+	(83, 14, '2014-08-02', 'укпукп', 34.88, 1, 36.3, '', '');
 /*!40000 ALTER TABLE `anemneses` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.animals
+DROP TABLE IF EXISTS `animals`;
 CREATE TABLE IF NOT EXISTS `animals` (
   `id_animal` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -63,9 +61,9 @@ CREATE TABLE IF NOT EXISTS `animals` (
   KEY `fk_animals_types1` (`id_type`),
   CONSTRAINT `fk_animals_masters` FOREIGN KEY (`id_master`) REFERENCES `masters` (`id_master`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_animals_types1` FOREIGN KEY (`id_type`) REFERENCES `types` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.animals: ~11 rows (approximately)
+-- Dumping data for table zoo.animals: ~12 rows (approximately)
 DELETE FROM `animals`;
 /*!40000 ALTER TABLE `animals` DISABLE KEYS */;
 INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, `date_reg`, `date_death`, `id_priv`, `id_master`, `description`) VALUES
@@ -79,11 +77,13 @@ INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, 
 	(9, 'Вася', 4, 0, 1, 'ва435436547', '2014-06-02', '0000-00-00', NULL, 4, 'упс'),
 	(10, 'Тузик', 2, 0, 7, 'ва45465768', '2014-05-01', '2014-06-03', NULL, 4, 'вуацуа'),
 	(12, 'Хомяк', 4, 0, 25, '34534534534', '2013-12-01', '0000-00-00', NULL, 3, 'кекупукпукпук'),
-	(13, 'Пельмень', 1, 0, 2, 'а156458', '2014-07-01', '0000-00-00', NULL, 3, 'Мой кот');
+	(13, 'Пельмень', 1, 0, 2, 'а156458', '2014-07-01', '0000-00-00', NULL, 3, 'Мой кот'),
+	(14, 'Бобикс', 4, 0, 52, '234234234', '2014-08-01', '1970-01-01', NULL, 1, 'увацуацуа');
 /*!40000 ALTER TABLE `animals` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.AuthAssignment
+DROP TABLE IF EXISTS `AuthAssignment`;
 CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
   `userid` varchar(64) NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.AuthAssignment: ~0 rows (approximately)
+-- Dumping data for table zoo.AuthAssignment: ~3 rows (approximately)
 DELETE FROM `AuthAssignment`;
 /*!40000 ALTER TABLE `AuthAssignment` DISABLE KEYS */;
 INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
@@ -104,6 +104,7 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 
 
 -- Dumping structure for table zoo.AuthItem
+DROP TABLE IF EXISTS `AuthItem`;
 CREATE TABLE IF NOT EXISTS `AuthItem` (
   `name` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
@@ -182,6 +183,7 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 
 
 -- Dumping structure for table zoo.AuthItemChild
+DROP TABLE IF EXISTS `AuthItemChild`;
 CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
@@ -260,6 +262,7 @@ INSERT INTO `AuthItemChild` (`parent`, `child`) VALUES
 
 
 -- Dumping structure for table zoo.cure
+DROP TABLE IF EXISTS `cure`;
 CREATE TABLE IF NOT EXISTS `cure` (
   `id_cure` int(10) NOT NULL AUTO_INCREMENT,
   `id_anemnes` int(10) DEFAULT NULL,
@@ -283,11 +286,12 @@ INSERT INTO `cure` (`id_cure`, `id_anemnes`, `rp`, `ds`) VALUES
 	(7, 1, 'вава', 'вавав'),
 	(8, 1, '121212', '12121212'),
 	(10, 82, 'gfh', 'пекр'),
-	(11, 82, 'decunon', 'v/m 3ml');
+	(11, 82, 'decunon', 'v/m 3mlqqqq222');
 /*!40000 ALTER TABLE `cure` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.masters
+DROP TABLE IF EXISTS `masters`;
 CREATE TABLE IF NOT EXISTS `masters` (
   `id_master` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
@@ -302,20 +306,22 @@ CREATE TABLE IF NOT EXISTS `masters` (
   `telephone_3` varchar(45) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_master`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.masters: ~4 rows (approximately)
+-- Dumping data for table zoo.masters: ~5 rows (approximately)
 DELETE FROM `masters`;
 /*!40000 ALTER TABLE `masters` DISABLE KEYS */;
 INSERT INTO `masters` (`id_master`, `firstname`, `surname`, `lastname`, `city`, `street`, `n_home`, `n_apart`, `telephone_1`, `telephone_2`, `telephone_3`, `description`) VALUES
 	(1, 'Иван', 'Иванович', 'Иванов', 'Синельниково', 'Мира', '25', 15, '123456789', '123456789', '123456789', 'descrdqdqwdqwdqwd'),
 	(2, 'Petya', 'Petrovich', 'Petrov', 'Синельниково', 'Lenina', '15', NULL, '123456789', NULL, NULL, 'desc'),
 	(3, 'Дмитрий', 'Александрович', 'Галушко', 'Синельниково', 'Шевченко', '46', 0, '123456789', '123456', '', 'дескр'),
-	(4, 'Сидор', 'Сидорович', 'Сидоров', 'сел. Зайцеве', 'Миру', '12', 1, '0664865679', '0566348978', '', 'Хто це?');
+	(4, 'Сидор', 'Сидорович', 'Сидоров', 'сел. Зайцеве', 'Миру', '12', 1, '0664865679', '0566348978', '', 'Хто це?'),
+	(5, 'Коля', 'Петрович', 'Васичкин', 'г. СИнельниково', 'Мира', '18', 19, '0566348648', '', '', 'паукпукпукпукп');
 /*!40000 ALTER TABLE `masters` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.medics
+DROP TABLE IF EXISTS `medics`;
 CREATE TABLE IF NOT EXISTS `medics` (
   `id_medic` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) NOT NULL,
@@ -324,19 +330,21 @@ CREATE TABLE IF NOT EXISTS `medics` (
   `description` varchar(45) DEFAULT NULL,
   `work` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_medic`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.medics: ~3 rows (approximately)
 DELETE FROM `medics`;
 /*!40000 ALTER TABLE `medics` DISABLE KEYS */;
 INSERT INTO `medics` (`id_medic`, `firstname`, `surname`, `lastname`, `description`, `work`) VALUES
-	(1, 'Marina', 'Volodimirivna', 'Galushko', 'description', 'nach'),
+	(1, 'Marina', 'Volodimirivna', 'Galushko', 'description2e2e2e2e', 'nach'),
 	(2, 'Lusya', 'Ivanovna', 'Petrova', 'descr', 'zam'),
-	(3, 'Болит', 'Иванович', 'Ай', 'это описание ', 'самый главный');
+	(3, 'Болит', 'Иванович', 'Ай', 'это описание ', 'самый главный'),
+	(4, 'Иван', 'Петрович', 'Пупкин', 'ываыпукп', 'шланг');
 /*!40000 ALTER TABLE `medics` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.priv
+DROP TABLE IF EXISTS `priv`;
 CREATE TABLE IF NOT EXISTS `priv` (
   `id_priv` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
@@ -369,6 +377,7 @@ INSERT INTO `priv` (`id_priv`, `date`, `description`, `id_animal`, `complete`, `
 
 
 -- Dumping structure for table zoo.recomendations
+DROP TABLE IF EXISTS `recomendations`;
 CREATE TABLE IF NOT EXISTS `recomendations` (
   `id_recomendation` int(10) NOT NULL AUTO_INCREMENT,
   `id_anemnes` int(10) DEFAULT NULL,
@@ -377,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `recomendations` (
   PRIMARY KEY (`id_recomendation`),
   KEY `id_anemnes` (`id_anemnes`),
   CONSTRAINT `FK_recomendations_anemneses` FOREIGN KEY (`id_anemnes`) REFERENCES `anemneses` (`id_anemnes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.recomendations: ~5 rows (approximately)
 DELETE FROM `recomendations`;
@@ -387,11 +396,13 @@ INSERT INTO `recomendations` (`id_recomendation`, `id_anemnes`, `rp`, `ds`) VALU
 	(9, 1, 'sdvsdvsd', 'dsvsdvsdv'),
 	(10, 2, 'sdvsdvsdvsdv', 'dg dfbdfb dfb'),
 	(11, 1, 'dadada', 'yesyesyes'),
-	(13, 1, 'укпку', 'укпку');
+	(13, 1, 'укпку', 'укпку'),
+	(14, 82, 'ergergergerg1111111111', 'ergergergergergergerg');
 /*!40000 ALTER TABLE `recomendations` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.types
+DROP TABLE IF EXISTS `types`;
 CREATE TABLE IF NOT EXISTS `types` (
   `id_type` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -403,16 +414,17 @@ CREATE TABLE IF NOT EXISTS `types` (
 DELETE FROM `types`;
 /*!40000 ALTER TABLE `types` DISABLE KEYS */;
 INSERT INTO `types` (`id_type`, `name`, `description`) VALUES
-	(1, 'Cat', NULL),
+	(1, 'Кот', ''),
 	(2, 'Dog', NULL),
 	(3, 'Goat', NULL),
 	(4, 'Хомяк', 'животное'),
-	(5, 'бычок', ''),
+	(5, 'бычок', 'уцацуацуа'),
 	(6, 'корова', '');
 /*!40000 ALTER TABLE `types` ENABLE KEYS */;
 
 
 -- Dumping structure for table zoo.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(10) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) NOT NULL DEFAULT '0',
@@ -422,17 +434,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL DEFAULT '0',
   `description` varchar(255) DEFAULT '0',
   `id_medic` int(10) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
+  `role` int(10) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.users: ~9 rows (approximately)
+-- Dumping data for table zoo.users: ~3 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id_user`, `login`, `firstname`, `surname`, `lastname`, `password`, `description`, `id_medic`, `role`) VALUES
-	(12, 'admin', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL, 'admin'),
-	(14, 'manager', 'Дмитрий', 'Александрович', 'Галушко', '$2a$13$Lq4HXA3M4SeraEWuWH2Rj.oaT9oaP5ova1gT6HCX9UuCLqWsDy2Ie', 'admin of this site', NULL, 'manager'),
-	(15, 'user', '0', '0', '0', '$2a$13$WfvHMLd52zbLd8muC.zBzelHOJr/z37sG83ebXRWf43LBSOFFeBAy', '0', NULL, 'user');
+	(12, 'admin', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL, 0),
+	(14, 'manager', 'Дмитрий', 'Александрович', 'Галушко', '$2a$13$Lq4HXA3M4SeraEWuWH2Rj.oaT9oaP5ova1gT6HCX9UuCLqWsDy2Ie', 'admin of this site', NULL, 0),
+	(15, 'user', '0', '0', '0', '$2a$13$WfvHMLd52zbLd8muC.zBzelHOJr/z37sG83ebXRWf43LBSOFFeBAy', '0', NULL, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

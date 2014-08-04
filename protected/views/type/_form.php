@@ -27,12 +27,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'description',array(
+								 'rows'=>5, 'cols'=>45, 'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить',array('class'=>'btn btn-info')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

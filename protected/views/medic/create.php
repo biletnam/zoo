@@ -7,12 +7,12 @@ $this->breadcrumbs=array(
 	'Добавить',
 );
 
-$this->menu=array(
+/*$this->menu=array(
 	array('label'=>'Список докторов', 'url'=>array('index')),
 	array('label'=>'Управление', 'url'=>array('admin')),
-);
+);*/
 ?>
 
-<h1>Добавить доктора</h1>
+<h3>Добавить доктора</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

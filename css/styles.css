@@ -2,7 +2,7 @@
 	margin: 5px 0;
     text-align: right;
     font-size: 0.9em;
-    float:left;
+    /*float:left;*/
 }
 
 .list-view .sorter {
@@ -180,4 +180,52 @@ div.search-form {
 	/*border-left:2px solid #ccc;*/
 	border-left:1px solid #ccc;
 	width:50px;
+}
+.view-medic{
+	display: block;
+	width: 70%;
+	float: left;
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+.view-medic-work{
+	display: block;
+	width: 70%;
+	font-size: 1.3em;
+    margin: 4px 0;
+}
+.type-name{
+	display: block;
+	width: 70%;
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+.type-description{
+	display: block;
+	width: 70%;
+	font-size: 1.3em;
+    margin: 4px 0;
+}
+.form_countanimal,.form_type,.form_priv{
+	background: none repeat scroll 0 0 #f2f9f0;
+	border: 1px solid #c9e0ed;
+	border-radius: 12px;
+    padding: 12px;
+}
+.row.submit{
+	float:right;
+}
+.form-inline{
+	margin-top: 15px;
+}
+.form-inline label{
+	margin-left: 15px;
+	margin-top: 2px;
+}
+.form-inline input[type=radio]{
+	margin-left: 2px;
+	margin-top: 0px;
+}
+#report_type{
+	margin-bottom: 0px;
 }

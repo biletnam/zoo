@@ -31,6 +31,7 @@
    }
    #header {
    	border:none;
+   	background: none;
    }
    #logo {
    	padding: 20px 0px;

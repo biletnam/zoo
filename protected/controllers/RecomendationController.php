@@ -98,7 +98,7 @@ class RecomendationController extends Controller
 		if (Yii::app()->user->checkAccess('updateRecomendation')) {
 			$model=$this->loadModel($id);
 
-			$id_anemnes = ($_GET['id_anemnes']);
+			$id = ($_GET['id']);
 
 			if(isset($_POST['Recomendation']))
 			{

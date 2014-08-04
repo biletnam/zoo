@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Просмотр данных о докторе <?php //echo $model->id_medic; ?></h1>
+<h3>Просмотр данных доктора</h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

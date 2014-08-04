@@ -1,5 +1,5 @@
 <?php //var_dump($dataProvider); ?>
-<h1>Зарегистрированные животные</h1>
+<h3>Зарегистрированные животные</h3>
 
 <div id="report_animals">
 	<?php  

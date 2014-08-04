@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Типы животных</h1>
+<h3>Типы животных</h3>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

@@ -5,12 +5,13 @@
 	'Отчеты',
 );*/
 ?>
-<h1>Отчеты</h1>
+<h3>Отчеты</h3>
 
-<h3>Количество зарегистрированных животных</h3>
+<h4>Количество зарегистрированных животных</h4>
 <div class="form_countanimal">
 	<?php $form = $this->beginWidget('CActiveForm', array(
-											'action'=>$this->createUrl('report/countanimal')
+											'action'=>$this->createUrl('report/countanimal'),
+											'htmlOptions'=>array('class'=>'form-inline'),
 										)); ?>
 
 	<label for="report_all">Все животные</label>
@@ -21,13 +22,14 @@
 	<input type="radio" name="report_type" id="report_death" value="death"/>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton('Сформировать'); ?>
+		<?php echo CHtml::submitButton('Сформировать',array('class'=>'btn btn-default')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
 </div><!-- form -->
+<hr>
 
-<h3>Типы животных</h3>
+<h4>Типы животных</h4>
 <div class="form_type">
 	<?php $form = $this->beginWidget('CActiveForm', array(
 											'action'=>$this->createUrl('report/type')
@@ -38,17 +40,19 @@
 										'options'=>array(0=>array('selected'=>'selected'))));?>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton('Сформировать'); ?>
+		<?php echo CHtml::submitButton('Сформировать',array('class'=>'btn btn-default')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
 </div><!-- form -->
+<hr>
 
-<h3>Прививки</h3>
+<h4>Прививки</h4>
 <div>
 	<div class="form_priv">
 	<?php $form = $this->beginWidget('CActiveForm', array(
-											'action'=>$this->createUrl('report/priv')
+											'action'=>$this->createUrl('report/priv'),
+											'htmlOptions'=>array('class'=>'form-inline'),
 										)); ?>
 
 	<label for="report_priv_all">Все прививки</label>
@@ -59,9 +63,10 @@
 	<input type="radio" name="report_priv" id="report_priv_crazy" value="crazy"/>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton('Сформировать'); ?>
+		<?php echo CHtml::submitButton('Сформировать',array('class'=>'btn btn-default')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
 </div><!-- form -->
 </div>
+<hr>

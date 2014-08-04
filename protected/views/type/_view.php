@@ -5,19 +5,18 @@
 
 <div class="view">
 
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_type')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_type), array('view', 'id'=>$data->id_type)); ?>
-	<br />
-	*/ 
-	?>
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id'=>$data->id_type)); ?>
-	<br />
+	<div class="type-name">
+		<?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id'=>$data->id_type)); ?>
+	</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
+	<div class="type-description">
+		<?php echo CHtml::encode($data->description); ?>
+	</div>
+
+	<div class="view-buttons">
+		<?php echo CHtml::link("<i class='icon-edit'></i>", array('update', 'id'=>$data->id_type)); ?>
+		<?php echo CHtml::link("<i class='icon-remove'></i>", array('delete', 'id'=>$data->id_type)); ?>
+	</div>	
 
 
 </div>

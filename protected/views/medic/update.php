@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Изменить данные о докторе <?php //echo $model->id_medic; ?></h1>
+<h3>Изменить данные доктора</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
