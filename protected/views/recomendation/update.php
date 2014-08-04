@@ -16,6 +16,6 @@ $this->menu=array(
 );*/
 ?>
 
-<h1>Тзменить рекомендацию <?php //echo $model->id_recomendation; ?></h1>
+<h3>Изменить рекомендацию</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

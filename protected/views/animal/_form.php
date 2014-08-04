@@ -54,14 +54,15 @@
 	</div>
 
 	<?php if ($model->isNewRecord): ?>
-	<div class="row">
+	<div class="row age">
 		<?php echo $form->labelEx($model,'age'); ?>
 		<?php echo "<div id='age_display' style='display:box;'>"; ?>
 		<?php echo "<div id='age_display_year'><span>".$model->getAge('year')."</span> лет</div>"; ?>
 		<?php echo "<div id='age_display_month'><span>".$model->getAge('month')."</span> месяцев</div>"; ?>
 		<?php echo "</div>"; ?>
-		<?php echo "<div id='age_button' style='display:box;height:20px;width:20px;background-color:red;cursor:point;'>Изменить</div>"; ?>
-		<?php echo $form->hiddenField($model,'age', $age); ?>
+		<?php echo "<div id='age_button' class='btn btn-warning'>Изменить</div>"; ?>
+		<?php //echo $form->hiddenField($model,'age', $age); ?>
+		<input id="Animal_age" type="hidden" value="" name="Animal[age]">
 		<?php echo $form->error($model,'age'); ?>
 	</div>
 	<?php endif; ?>
@@ -142,7 +143,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить',array('class'=>'btn ntn-info')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

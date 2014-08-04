@@ -57,4 +57,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 ));
 
 echo CHtml::link(CHtml::encode("Новый анемнез"),
-                    array("anemnes/create","id_animal" => $animal));
+                    array("anemnes/create","id_animal" => $animal),array('class'=>'btn btn-success'));

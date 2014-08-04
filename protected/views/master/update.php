@@ -3,8 +3,8 @@
 /* @var $model Master */
 
 $this->breadcrumbs=array(
-	'Владельцы'=>array('index'),
-	$model->id_master=>array('view','id'=>$model->id_master),
+	'Список владельце живолтных'=>array('index'),
+	$model->lastname=>array('view','id'=>$model->id_master),
 	'Изменить',
 );
 
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Изменить данные владельца <?php echo $model->id_master; ?></h1>
+<h3>Изменить данные владельца</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

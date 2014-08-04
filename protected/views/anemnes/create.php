@@ -7,14 +7,14 @@ $this->breadcrumbs=array(
 	'Создать',
 );
 
-$this->menu=array(
+/*$this->menu=array(
 	array('label'=>'Список всех анемнезов', 'url'=>array('index')),
 	array('label'=>'Управление', 'url'=>array('admin')),
-);
-//var_dump($animal);
+);*/
+
 ?>
 
-<h1>Создать анемнез</h1>
+<h3>Создать анамнез</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model,
 										  'animal'=>$animal,)); ?>

@@ -13,7 +13,7 @@ $this->menu=array(
 );*/
 ?>
 
-<h1>Создать рекомендацию</h1>
+<h3>Создать рекомендацию</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model,
 										  'anemnes'=>$anemnes)); ?>

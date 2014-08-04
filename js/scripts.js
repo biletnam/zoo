@@ -2,8 +2,8 @@ $(document).ready(function(){
 	$("#age_button").click(function(){
 		//alert("wdwd");
 		$("#age_dialog").dialog({
-			height: 200,
-      		width: 300,
+			height: 210,
+      		width: 365,
       		modal: true,
       		resizable: false,
       		buttons: {

@@ -13,6 +13,6 @@ $this->breadcrumbs=array(
 );*/
 ?>
 
-<h1>Добавить данные о новом владельце животных</h1>
+<h3>Добавить данные о новом владельце животных</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

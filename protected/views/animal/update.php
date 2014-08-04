@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Изменить данные о животном <?php echo $model->name; ?></h1>
+<h3>Изменить данные животного</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

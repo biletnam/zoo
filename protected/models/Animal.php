@@ -78,7 +78,7 @@ class Animal extends CActiveRecord
 			'name' => 'Кличка',
 			'id_type' => 'Вид животного',
 			'sex' => 'Пол',
-			'age' => 'Возраст (год.)',
+			'age' => 'Возраст',
 			'reg_num' => 'Регистрационный номер',
 			'date_reg' => 'Дата регистрации',
 			'date_death' => 'Дата падежа',

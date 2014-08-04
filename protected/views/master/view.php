@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Список владельцев животных'=>array('index'),
-	$model->lastname,
+	$model->lastname." ".$model->firstname." ".$model->surname,
 );
 
 $this->menu=array(
@@ -12,12 +12,13 @@ $this->menu=array(
 	array('label'=>'Добавить нового владельца', 'url'=>array('create')),
 	array('label'=>'Добавить животное', 'url'=>array('animal/create','id_master'=>$model->id_master)),
 	array('label'=>'Редактировать владельца', 'url'=>array('update', 'id'=>$model->id_master)),
-	array('label'=>'Удалить владельца', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_master),'confirm'=>'Вы уверены что хотите удалить данные?')),
+	//array('label'=>'Удалить владельца', 'url'=>array('master/delete'), 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_master),'confirm'=>'Вы уверены что хотите удалить данные?')),
+	array('label'=>'Удалить владельца', 'url'=>array('delete', 'id'=>$model->id_master), 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_master),'confirm'=>'Вы уверены что хотите удалить данные?')),
 	array('label'=>'Управление', 'url'=>array('admin')),
 );
 ?>
 
-<h2>Данные владельца животных</h2>
+<h3>Данные владельца животных</h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -39,9 +40,9 @@ $this->menu=array(
 
 <div id='animals'>
 	<?php if(count($model->animal)>=1): ?>
-        <h3>
+        <h5>
             <?php echo "Всего животных: ".count($model->animal); ?>
-        </h3>
+        </h5>
         <?php $this->renderPartial('_animals',array(
             'master'=>$model,
             'animals'=>$model->animal,

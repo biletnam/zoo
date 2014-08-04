@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
-	$('.search-form').toggle();
+	$('.search-form').toggle(500);
 	return false;
 });
 $('.search-form form').submit(function(){

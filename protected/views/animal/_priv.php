@@ -52,4 +52,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 ));
 
 echo CHtml::link(CHtml::encode("Новая прививка"),
-                    array("priv/create","id_animal" => $animal));
+                    array("priv/create","id_animal" => $animal),array('class'=>'btn btn-success'));

@@ -60,7 +60,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'summ'); ?>
-		<?php echo $form->textField($model,'summ',array('options'=>array('pattern'=>'^[-+]?\d+(\,\d+)?$'))); ?>
+		<?php //echo $form->textField($model,'summ',array('options'=>array('pattern'=>'^[-+]?\d+(\,\d+)?$'))); ?>
+		<?php echo $form->textField($model,'summ',array('pattern'=>'[0-9]+([\.|,][0-9]+)?')); ?>
+		<?php //echo $form->textField($model,'summ'); ?>
 		<?php echo $form->error($model,'summ'); ?>
 	</div>
 
@@ -92,29 +94,14 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'temperature'); ?>
-		<?php echo $form->textField($model,'temperature',array('options'=>array('pattern'=>'^[-+]?\d+(\,\d+)?$'))); ?>
+		<?php //echo $form->textField($model,'temperature',array('options'=>array('pattern'=>'^[-+]?\d+(\,\d+)?$'))); ?>
+		<?php echo $form->textField($model,'temperature',array('pattern'=>'[0-9]+([\.|,][0-9]+)?')); ?>
+		<?php //echo $form->textField($model,'temperature'); ?>
 		<?php echo $form->error($model,'temperature'); ?>
 	</div>
 
-	<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'color_sl'); ?>
-		<?php //echo $form->textField($model,'color_sl'); ?>
-		<?php echo $form->textArea($model,'color_sl',
-									array('maxlength' => 1000, 'rows' => 10, 'cols' => 50)); ?>
-		<?php echo $form->error($model,'color_sl'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'skin'); ?>
-		<?php //echo $form->textField($model,'skin'); ?>
-		<?php echo $form->textArea($model,'skin',
-									array('maxlength' => 1000, 'rows' => 10, 'cols' => 50)); ?>
-		<?php echo $form->error($model,'skin'); ?>
-	</div> */?>
-
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить',array('class'=>'btn btn-info')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

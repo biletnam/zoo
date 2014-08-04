@@ -9,17 +9,17 @@
 		<?php echo CHtml::encode($data->type->name); ?>
 	</div>
 	<div class="view-date">
-		<?php echo CHtml::encode($data->date_reg); ?>
+		<?php echo "Дата регистрации: ".CHtml::encode($data->date_reg); ?>
 	</div>
 	<div class="view-date">
 		<?php
 			if ($data->date_death != '00-00-0000') {
-				echo CHtml::encode("Падеж ".$data->date_death);
+				echo CHtml::encode("Дата падежа: ".$data->date_death);
 			}
 		?>
 	</div>
 	<div class="view-buttons">
-		<?php echo CHtml::link(CHtml::encode("Изменить"), array('animal/update', 'id'=>$data->id_animal)); ?>
-		<?php echo CHtml::link(CHtml::encode("Удалить"), array('animal/delete', 'id'=>$data->id_animal)); ?>
+		<?php echo CHtml::link("<i class='icon-edit'></i>", array('animal/update', 'id'=>$data->id_animal)); ?>
+		<?php echo CHtml::link("<i class='icon-remove'></i>", array('animal/delete', 'id'=>$data->id_animal)); ?>
 	</div>	
 </div>

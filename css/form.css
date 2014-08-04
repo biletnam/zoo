@@ -119,6 +119,7 @@ div.form div.success label
 div.form .errorSummary
 {
 	border: 2px solid #C00;
+	border-radius: 12px;
 	padding: 7px 7px 12px 7px;
 	margin: 0 0 20px 0;
 	background: #FEE;
@@ -149,7 +150,7 @@ div.wide.form label
 	margin-right: 10px;
 	position: relative;
 	text-align: right;
-	width: 100px;
+	width: 120px;
 }
 
 div.wide.form .row

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Данные животного'=>array('/animal/view&id='.$model->id_animal),
-	$model->date=>array('view','id'=>$model->id_anemnes),
+	"Анамнез от ".$model->date=>array('view','id'=>$model->id_anemnes),
 	'Изменить',
 );
 
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Изменить данные об анемнезе <?php //echo $model->id_anemnes; ?></h1>
+<h3>Изменить данные анамнеза</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

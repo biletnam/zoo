@@ -22,7 +22,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastname'); ?>
 		<?php echo $form->textField($model,'lastname',array(
-												'required'=>'require','size'=>60,'maxlength'=>255)); ?>
+												'required'=>'require','size'=>100,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'lastname'); ?>
 	</div>
 
@@ -93,7 +93,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить',array('class'=>'btn ntn-info')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

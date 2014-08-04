@@ -5,19 +5,19 @@
 $this->breadcrumbs=array(
 	//'Анемнезы'=>array('index'),
 	'Данные животного'=>array('/animal/view&id='.$model->id_animal),
-	$model->date,
+	"Анамнез от ".$model->date,
 );
 
 $this->menu=array(
 	//array('label'=>'Список анемнезов', 'url'=>array('index')),
-	array('label'=>'Добавить новый анемнез', 'url'=>array('/anemnes/create&id_animal='.$model->id_animal)),
+	array('label'=>'Добавить новый анамнез', 'url'=>array('/anemnes/create&id_animal='.$model->id_animal)),
 	array('label'=>'Изменить данные анемнеза', 'url'=>array('update', 'id'=>$model->id_anemnes)),
 	array('label'=>'Удалить анемнез', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_anemnes),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Управление', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Просмотр данных об анемнезе <?php //echo $model->id_anemnes; ?></h1>
+<h3>Просмотр данных анамнеза</h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -51,18 +51,18 @@ $this->menu=array(
 	),
 )); 
 
+echo "<div id='cure-grid'>";
 $this->widget('application.components.wcure', array(
 		'data'=>$model->cure,
-		'name'=>'Лечение',
+		'name'=>'<div>Лечение</div>',
 		'id_anemnes'=>$model->id_anemnes,
 	));
+echo "</div>";
 
+echo "<div id='recomendation-grid'>";
 $this->widget('application.components.wrecomendation', array(
 		'data'=>$model->recomendation,
-		'name'=>'Рекомендации',
+		'name'=>'<div>Рекомендации</div>',
 		'id_anemnes'=>$model->id_anemnes,
 	));
-
-echo "<pre>";
-//var_dump($model);
-echo "</pre>";
+echo "</div>";

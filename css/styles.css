@@ -1,0 +1,183 @@
+.list-view .summary {
+	margin: 5px 0;
+    text-align: right;
+    font-size: 0.9em;
+    float:left;
+}
+
+.list-view .sorter {
+    font-size: 0.9em;
+}
+
+div.view {
+    border: 1px solid #c9e0ed;
+    border-radius: 12px;
+    margin: 10px 0;
+    padding: 10px;
+}
+.view-fio {
+	display: block;
+	width: 70%;
+	float: left;
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+
+.view-home {
+	display: block;
+	width: 70%;
+	font-size: 1.3em;
+    margin: 4px 0;
+}
+
+.view-count{
+	display: block;
+	float: right;
+	margin-right: 5px;
+    margin-top: -57px;
+}
+.view-buttons{
+	display: block;
+	float: right;
+	margin-top: -25px;
+}
+div.search-form {
+	background: none repeat scroll 0 0 #d3e9f0;
+	border-radius: 12px;
+}
+#animals div.list-view div.summary{
+	display: block;
+	float: right;
+	position: relative;
+    top: -30px;
+}
+#animals div.list-view div.items div.view{
+	display: block;
+	height: 80px;
+}
+#animals div.list-view div.items div.view .view-name{
+	display: block;
+	width: 300px;
+	float: left;
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+#animals div.list-view div.items div.view .view-type{
+	display: block;
+	width: 300px;
+    font-size: 1.3em;
+    margin: 5px 0;
+}
+#animals div.list-view div.items div.view .view-date{
+	display: block;
+	clear: both;
+	float: right;
+    position: relative;
+    top: -50px;
+}
+#animals div.list-view div.items div.view .view-buttons{
+	float: none;
+    left: 200px;
+    margin-top: 0;
+    position: relative;
+    text-align: right;
+    width: 465px;
+}
+#anemnes-grid{
+	/*border: 1px solid #c9e0ed;
+	border-radius: 12px;*/
+	padding: 0px;
+}
+#anemnes-grid > a{	
+	float: right;
+    margin-bottom: 20px;
+}
+#anemnes-grid div.grid-name{
+	margin-top: 20px;
+}
+#anemnes-grid span{
+	display: block;
+	margin-top: -10px;
+}
+#priv-grid{
+	/*border: 1px solid #c9e0ed;
+	border-radius: 12px;*/
+	padding: 0px;
+}
+#priv-grid > a{	
+	float: right;
+    margin-bottom: 20px;
+}
+#priv-grid div.grid-name{
+	margin-top: 20px;
+}
+#priv-grid span{
+	display: block;
+	margin-top: -10px;
+}
+#age_display_year {
+    float: left;
+    margin: 5px 10px 0 0;
+}
+#age_display_month{
+	float: left;
+    margin: 5px 10px 0 0;
+}
+#age_button {
+	float: left;
+    margin: 0 10px 0 0;	
+}
+
+.row.age {
+
+}
+
+#age_dialog div span{
+	margin-right: 20px;
+}
+#cure-grid,#recomendation-grid{
+	margin: 15px 5px;
+}
+#cure-grid>a,#recomendation-grid>a{
+	float:right;
+	margin: 15px 0;
+}
+#cure-grid div,#recomendation-grid div{
+	margin: 0 0 0 10px;
+	font-size: 1.3em;
+}
+#cure-grid table,#recomendation-grid table{
+	/*border: 1px solid #ccc;
+    border-radius: 24px;*/
+    margin: 10px 5px;
+}
+#cure-grid table tr.odd,#recomendation-grid table tr.odd{
+	border-top:2px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+#cure-grid table tr.ev,#recomendation-grid table tr.ev{
+	border-top:1px solid #ccc;
+	border-bottom:2px solid #ccc;
+}
+#cure-grid table tr.odd td:first-child,#recomendation-grid table tr.odd td:first-child{
+	/*border-left:2px solid #ccc;*/
+	border-right:1px solid #ccc;
+	width:30px;
+}
+#cure-grid table tr.odd td:last-child,#recomendation-grid table tr.odd td:last-child{
+	/*border-left:2px solid #ccc;*/
+	border-left:1px solid #ccc;
+	border-bottom: 1px solid white !important;
+	width:50px;
+	text-align: center;
+}
+#cure-grid table tr.ev td:first-child,#recomendation-grid table tr.ev td:first-child{
+	/*border-left:2px solid #ccc;*/
+	border-right:1px solid #ccc;
+	width:30px;
+}
+#cure-grid table tr.ev td:last-child,#recomendation-grid table tr.ev td:last-child{
+	/*border-left:2px solid #ccc;*/
+	border-left:1px solid #ccc;
+	width:50px;
+}

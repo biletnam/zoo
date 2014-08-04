@@ -29,8 +29,8 @@
 		<?php echo CHtml::encode(count(Animal::model()->findAllByAttributes(array('id_master'=>$data->id_master)))." животных"); ?>
 	</div>
 	<div class="view-buttons">
-		<?php echo CHtml::link(CHtml::encode("Изменить"), array('update', 'id'=>$data->id_master)); ?>
-		<?php echo CHtml::link(CHtml::encode("Удалить"), array('delete', 'id'=>$data->id_master)); ?>
+		<?php echo CHtml::link("<i class='icon-edit'></i>", array('update', 'id'=>$data->id_master)); ?>
+		<?php echo CHtml::link("<i class='icon-remove'></i>", array('delete', 'id'=>$data->id_master)); ?>
 	</div>	
 
 	<?php /*

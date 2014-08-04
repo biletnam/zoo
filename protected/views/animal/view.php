@@ -18,10 +18,10 @@ $this->menu=array(
 );
 ?>
 
-<h1>Данные о животном <?php echo CHtml::encode(
+<h3>Данные животного <?php echo CHtml::encode(
 							($model->date_death != "00-00-0000")?"(умер)":""
 						); ?>
-</h1>
+</h2>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -55,11 +55,11 @@ $this->menu=array(
 		'description',
 	),
 )); ?>
-
+<hr>
 <div id='anemnes-grid'>
 	
 	<?php if(count($model->anemnes)>=1): ?>
-		<div class="grid-name"><h3>Анемнезы</h3></div>
+		<div class="grid-name"><h4>Анамнезы</h4></div>
         <span>
             <?php echo "всего: ".count($model->anemnes); ?>
         </span>
@@ -70,10 +70,11 @@ $this->menu=array(
         )); ?>
     <?php endif; ?>
 </div>
+<hr>
 
 <div id='priv-grid'>
 	<?php if(count($model->priv)>=1): ?>
-		<div class="grid-name"><h3>Прививки</h3></div>
+		<div class="grid-name"><h4>Прививки</h4></div>
         <span>
             <?php echo "всего: ".count($model->priv); ?>
         </span>
@@ -84,3 +85,4 @@ $this->menu=array(
         )); ?>
     <?php endif; ?>
 </div>
+<hr>

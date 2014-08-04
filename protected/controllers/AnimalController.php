@@ -67,7 +67,8 @@ class AnimalController extends Controller
 	public function actionCreate($id_master)
 	{
 		if (Yii::app()->user->checkAccess('createAnimal')) {
-			$model=new Animal;
+			
+			$model = new Animal;
 
 			if(isset($_POST['Animal']))
 			{

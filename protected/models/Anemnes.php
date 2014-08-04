@@ -125,7 +125,7 @@ class Anemnes extends CActiveRecord
 		return parent::model($className);
 	}
 
-		protected function beforeSave() 
+	protected function beforeSave() 
 	{
    		if (parent::beforeSave()) {
    			if ($this->date) {

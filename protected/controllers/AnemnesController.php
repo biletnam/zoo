@@ -73,7 +73,7 @@ class AnemnesController extends Controller
 			$id_animal = (int)$id_animal;
 
 			if(isset($_POST['Anemnes']))
-			{
+			{				
 				$model->attributes=$_POST['Anemnes'];
 
 				if($model->save())
@@ -102,6 +102,7 @@ class AnemnesController extends Controller
 			
 			if(isset($_POST['Anemnes']))
 			{
+				//var_dump($_POST['Anemnes']);
 				$model->attributes=$_POST['Anemnes'];
 				if($model->save())
 					$this->redirect(array('view','id'=>$model->id_anemnes));
