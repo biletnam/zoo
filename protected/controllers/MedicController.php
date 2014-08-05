@@ -15,7 +15,7 @@ class MedicController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request*/
 		);
 	}
 
@@ -120,7 +120,7 @@ class MedicController extends Controller
 			$this->loadModel($id)->delete();
 
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 		} else {
 			 throw new CHttpException(403, 'Нет доступа');
 		}

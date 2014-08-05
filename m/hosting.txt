@@ -9,4 +9,12 @@ https://cp.beget.ru
 fh3806dk
 e4tFvFNAB
 
+mysql
+Сервер для подключения shattle5.beget.ru
+user fh3806dk_zoo
+j789789
+
 zoomedic.pp.ua
+
+
+http://pp.ua

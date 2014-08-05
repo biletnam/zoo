@@ -79,7 +79,7 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-		'log'=>array(
+		/*'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
@@ -95,9 +95,9 @@ return array(
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				*/
+				
 			),
-		),
+		),*/
 	),
 
 	// application-level parameters that can be accessed
