@@ -181,9 +181,9 @@ div.search-form
 .portlet-content
 {
 	font-size:0.9em;
-	margin: 0 0 15px 0;
+	/*margin: 0 0 15px 0;
 	padding: 5px 8px;
-	background:#EFFDFF;
+	background:#EFFDFF;*/
 }
 
 .portlet-content ul
