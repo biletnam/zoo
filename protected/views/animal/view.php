@@ -3,17 +3,19 @@
 /* @var $model Animal */
 
 $this->breadcrumbs=array(
-	'Данные владельца животного'=>array('/master/view&id='.$model->master->id_master),
+	'Данные владельца животного'=>array('/master/view', 'id'=>$model->master->id_master),
 	$model->name,
 );
 
 $this->menu=array(
 	//array('label'=>'Список животных', 'url'=>array('index')),
-	array('label'=>'Добавить новое животное', 'url'=>array('/animal/create&id_master='.$model->master->id_master)),
-	array('label'=>'Добавить анемнез', 'url'=>array('/anemnes/create&id_animal='.$model->id_animal)),
-	array('label'=>'Добавить прививку', 'url'=>array('/priv/create&id_animal='.$model->id_animal)),
+	//array('label'=>'Добавить новое животное', 'url'=>array('/animal/create&id_master='.$model->master->id_master)),
+	array('label'=>'Добавить новое животное', 'url'=>array('create', 'id_master'=>$model->master->id_master)),
+	//array('label'=>'Добавить анамнез', 'url'=>array('/anemnes/create&id_animal='.$model->id_animal)),
+	array('label'=>'Добавить анамнез', 'url'=>array('/anemnes/create', 'id_animal'=>$model->id_animal)),
+	array('label'=>'Добавить прививку', 'url'=>array('/priv/create', 'id_animal'=>$model->id_animal)),
 	array('label'=>'Изменить данные животного', 'url'=>array('update', 'id'=>$model->id_animal)),
-	array('label'=>'Удалить животное', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_animal),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Удалить животное', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_animal),'confirm'=>'Вы уверены?')),
 	array('label'=>'Управление', 'url'=>array('admin')),
 );
 ?>

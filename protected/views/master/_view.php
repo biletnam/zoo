@@ -30,7 +30,11 @@
 	</div>
 	<div class="view-buttons">
 		<?php echo CHtml::link("<i class='icon-edit'></i>", array('update', 'id'=>$data->id_master)); ?>
-		<?php echo CHtml::link("<i class='icon-remove'></i>", array('delete', 'id'=>$data->id_master)); ?>
+		<?php //echo CHtml::link("<i class='icon-remove'></i>", array('delete', 'id'=>$data->id_master)); ?>
+		<?php echo CHtml::link("<i class='icon-remove'></i>", 
+								"#", 
+								array('submit'=>array('delete', 'id'=>$data->id_master),
+								'confirm'=>'Вы уверены?')); ?>
 	</div>	
 
 	<?php /*

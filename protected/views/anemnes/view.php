@@ -4,14 +4,14 @@
 
 $this->breadcrumbs=array(
 	//'Анемнезы'=>array('index'),
-	'Данные животного'=>array('/animal/view&id='.$model->id_animal),
+	'Данные животного'=>array('/animal/view','id'=>$model->id_animal),
 	"Анамнез от ".$model->date,
 );
 
 $this->menu=array(
 	//array('label'=>'Список анемнезов', 'url'=>array('index')),
-	array('label'=>'Добавить новый анамнез', 'url'=>array('/anemnes/create&id_animal='.$model->id_animal)),
-	array('label'=>'Изменить данные анемнеза', 'url'=>array('update', 'id'=>$model->id_anemnes)),
+	array('label'=>'Добавить новый анамнез', 'url'=>array('/anemnes/create','id_animal'=>$model->id_animal)),
+	array('label'=>'Изменить данные анамнеза', 'url'=>array('update', 'id'=>$model->id_anemnes)),
 	array('label'=>'Удалить анемнез', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_anemnes),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Управление', 'url'=>array('admin')),
 );

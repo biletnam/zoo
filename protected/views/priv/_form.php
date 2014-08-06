@@ -66,8 +66,8 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">		
-		<?php echo $form->hiddenField($model,'id_animal', array('value'=>$animal)); ?>
+	<div class="row">
+		<?php echo $form->hiddenField($model,'id_animal', array('value'=>$model->id_animal)); ?>				
 	</div>	
 
 	<div class="row buttons">

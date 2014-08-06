@@ -3,13 +3,13 @@
 /* @var $model Priv */
 
 $this->breadcrumbs=array(
-	'Просмотр данных животного'=>array('/animal/view&id='.$model->id_animal),
+	'Просмотр данных животного'=>array('/animal/view','id'=>$model->id_animal),
 	$model->date,
 );
 
 $this->menu=array(
 	//array('label'=>'Список прививок', 'url'=>array('index')),
-	array('label'=>'Добавить новую прививку', 'url'=>array('/priv/create&id_animal='.$model->id_animal)),
+	array('label'=>'Добавить новую прививку', 'url'=>array('/priv/create','id_animal'=>$model->id_animal)),
 	array('label'=>'Изменить данные прививи', 'url'=>array('update', 'id'=>$model->id_priv)),
 	array('label'=>'Удалить прививку', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_priv),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Управление', 'url'=>array('admin')),

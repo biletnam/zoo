@@ -49,12 +49,24 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
-			//'urlFormat'=>'path',
+			'urlFormat'=>'path',
 			'showScriptName'=>false,
-			'rules'=>array(
-				/*'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+			/*'rules'=>array(
+				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',*/
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+			),*/
+			'rules'=>array(
+				''=>'master/index',
+				'animal/create/<id_master:\d+>'=>'animal/create',
+				'anemnes/create/<id_animal:\d+>'=>'anemnes/create',
+				'priv/create/<id_animal:\d+>'=>'priv/create',
+				'cure/create/<id_anemnes:\d+>'=>'cure/create',
+				'recomendation/create/<id_anemnes:\d+>'=>'recomendation/create',
+				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				//'<controller:\w+>/<action:\w+>/<id_anemnes:\d+>'=>'<controller>/<action>',
+				
+				//'<controller:\w+>/<action:\w+>/<id_master:\d+>'=>'<controller>/<action>',
 			),
 		),
 		

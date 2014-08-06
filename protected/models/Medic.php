@@ -45,6 +45,7 @@ class Medic extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'anemnes' => array(self::HAS_MANY, 'Anemnes', 'id_medic'),
 		);
 	}
 

@@ -33,21 +33,21 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(
 			'name' => 'Доктор',
             'type' => 'raw',
-            'value' => '$data->medic->lastname',
+            'value' => '($data->medic)?$data->medic->lastname:\'Не установлено\'',
 		),
 		array(
 			'class'=>'CButtonColumn',
 			'buttons'=> array(
 					'view'=>array(
-							'url' => 'Yii::app()->createUrl("anemnes/view&id=$data->id_anemnes")',
+							'url' => 'Yii::app()->createUrl("anemnes/view",array("id"=>$data->id_anemnes))',
 							'label'=>'Просмотр',
 					),
 					'update'=>array(
-							'url' => 'Yii::app()->createUrl("anemnes/update&id=$data->id_anemnes")',
+							'url' => 'Yii::app()->createUrl("anemnes/update",array("id"=>$data->id_anemnes))',
 							'label'=>'Изменить',
 					),
 					'delete'=>array(
-							'url' => 'Yii::app()->createUrl("anemnes/delete&id=$data->id_anemnes")',
+							'url' => 'Yii::app()->createUrl("anemnes/delete",array("id"=>$data->id_anemnes))',
 							'label'=>'Удалить',
 					),
 				),

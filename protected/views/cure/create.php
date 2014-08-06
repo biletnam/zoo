@@ -14,7 +14,7 @@
 //var_dump($anemnes);
 ?>
 
-<h1>Создать лечение</h1>
+<h3>Создать лечение</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model,
 										'anemnes'=>$anemnes)); ?>

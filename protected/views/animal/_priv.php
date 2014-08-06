@@ -34,15 +34,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'class'=>'CButtonColumn',
 			'buttons'=> array(
 					'view'=>array(
-							'url' => 'Yii::app()->createUrl("priv/view&id=$data->id_priv")',
+							'url' => 'Yii::app()->createUrl("priv/view",array("id"=>$data->id_priv))',
 							'label'=>'Просмотр',
 					),
 					'update'=>array(
-							'url' => 'Yii::app()->createUrl("priv/update&id=$data->id_priv")',
+							'url' => 'Yii::app()->createUrl("priv/update",array("id"=>$data->id_priv))',
 							'label'=>'Изменить',
 					),
 					'delete'=>array(
-							'url' => 'Yii::app()->createUrl("priv/delete&id=$data->id_priv")',
+							'url' => 'Yii::app()->createUrl("priv/delete",array("id"=>$data->id_priv))',
 							'label'=>'Удалить',
 					),
 				),
