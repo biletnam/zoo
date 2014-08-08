@@ -29,7 +29,6 @@
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
-
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
@@ -38,6 +37,7 @@
 				array('label'=>'Доктора', 'url'=>array('/medic/index')),
 				array('label'=>'Типы животных', 'url'=>array('/type/index')),
 				array('label'=>'Отчеты', 'url'=>array('/report/index')),
+				array('label'=>'Пользователи', 'url'=>array('/user/admin'),'visible'=>Yii::app()->user->getState('role')==='admin'),
 				array('label'=>'О программе', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Войти', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)

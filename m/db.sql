@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `anemneses` (
   `skin` varchar(255) NOT NULL,
   PRIMARY KEY (`id_anemnes`),
   KEY `id_animal` (`id_animal`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.anemneses: ~9 rows (approximately)
 DELETE FROM `anemneses`;
@@ -38,7 +38,8 @@ INSERT INTO `anemneses` (`id_anemnes`, `id_animal`, `date`, `description`, `summ
 	(79, 9, '2002-06-20', 'opisnie', 48.95, 3, 0.99, 'blue', 'good'),
 	(80, 13, '2014-07-01', 'Какая-то хрень', 21.8, 3, 0.99, '', ''),
 	(82, 6, '2014-07-21', 'ofsojhjpokbpkcvp[[pbkbkbk', 4565, 1, 0.99, '', ''),
-	(83, 14, '2014-08-02', 'укпукп', 34.88, 1, 36.3, '', '');
+	(83, 14, '2014-08-02', 'укпукп', 34.88, 1, 36.3, '', ''),
+	(84, 9, '2014-08-05', 'укпукп', 45, 1, 0, '', '');
 /*!40000 ALTER TABLE `anemneses` ENABLE KEYS */;
 
 
@@ -61,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `animals` (
   KEY `fk_animals_types1` (`id_type`),
   CONSTRAINT `fk_animals_masters` FOREIGN KEY (`id_master`) REFERENCES `masters` (`id_master`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_animals_types1` FOREIGN KEY (`id_type`) REFERENCES `types` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.animals: ~12 rows (approximately)
+-- Dumping data for table zoo.animals: ~11 rows (approximately)
 DELETE FROM `animals`;
 /*!40000 ALTER TABLE `animals` DISABLE KEYS */;
 INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, `date_reg`, `date_death`, `id_priv`, `id_master`, `description`) VALUES
@@ -78,7 +79,8 @@ INSERT INTO `animals` (`id_animal`, `name`, `id_type`, `sex`, `age`, `reg_num`, 
 	(10, 'Тузик', 2, 0, 7, 'ва45465768', '2014-05-01', '2014-06-03', NULL, 4, 'вуацуа'),
 	(12, 'Хомяк', 4, 0, 25, '34534534534', '2013-12-01', '0000-00-00', NULL, 3, 'кекупукпукпук'),
 	(13, 'Пельмень', 1, 0, 2, 'а156458', '2014-07-01', '0000-00-00', NULL, 3, 'Мой кот'),
-	(14, 'Бобикс', 4, 0, 52, '234234234', '2014-08-01', '1970-01-01', NULL, 1, 'увацуацуа');
+	(14, 'Бобикс', 4, 0, 52, '234234234', '2014-08-01', '1970-01-01', NULL, 1, 'увацуацуа'),
+	(15, 'Манька', 1, 0, 26, '645645', '2014-07-01', '1970-01-01', NULL, 2, 'gerger');
 /*!40000 ALTER TABLE `animals` ENABLE KEYS */;
 
 
@@ -271,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `cure` (
   PRIMARY KEY (`id_cure`),
   KEY `id_anemnes` (`id_anemnes`),
   CONSTRAINT `FK_cure_anemneses` FOREIGN KEY (`id_anemnes`) REFERENCES `anemneses` (`id_anemnes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.cure: ~10 rows (approximately)
 DELETE FROM `cure`;
@@ -286,7 +288,8 @@ INSERT INTO `cure` (`id_cure`, `id_anemnes`, `rp`, `ds`) VALUES
 	(7, 1, 'вава', 'вавав'),
 	(8, 1, '121212', '12121212'),
 	(10, 82, 'gfh', 'пекр'),
-	(11, 82, 'decunon', 'v/m 3mlqqqq222');
+	(11, 82, 'decunon', 'v/m 3mlqqqq222'),
+	(12, 79, 'ergerg11111', 'ergerg111');
 /*!40000 ALTER TABLE `cure` ENABLE KEYS */;
 
 
@@ -308,12 +311,12 @@ CREATE TABLE IF NOT EXISTS `masters` (
   PRIMARY KEY (`id_master`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.masters: ~5 rows (approximately)
+-- Dumping data for table zoo.masters: ~4 rows (approximately)
 DELETE FROM `masters`;
 /*!40000 ALTER TABLE `masters` DISABLE KEYS */;
 INSERT INTO `masters` (`id_master`, `firstname`, `surname`, `lastname`, `city`, `street`, `n_home`, `n_apart`, `telephone_1`, `telephone_2`, `telephone_3`, `description`) VALUES
 	(1, 'Иван', 'Иванович', 'Иванов', 'Синельниково', 'Мира', '25', 15, '123456789', '123456789', '123456789', 'descrdqdqwdqwdqwd'),
-	(2, 'Petya', 'Petrovich', 'Petrov', 'Синельниково', 'Lenina', '15', NULL, '123456789', NULL, NULL, 'desc'),
+	(2, 'Petya', 'Petrovich', 'Petrov', 'Синельниково', 'Lenina', '15', NULL, '123456789', '345345345', '', 'desc'),
 	(3, 'Дмитрий', 'Александрович', 'Галушко', 'Синельниково', 'Шевченко', '46', 0, '123456789', '123456', '', 'дескр'),
 	(4, 'Сидор', 'Сидорович', 'Сидоров', 'сел. Зайцеве', 'Миру', '12', 1, '0664865679', '0566348978', '', 'Хто це?'),
 	(5, 'Коля', 'Петрович', 'Васичкин', 'г. СИнельниково', 'Мира', '18', 19, '0566348648', '', '', 'паукпукпукпукп');
@@ -330,16 +333,14 @@ CREATE TABLE IF NOT EXISTS `medics` (
   `description` varchar(45) DEFAULT NULL,
   `work` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_medic`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.medics: ~3 rows (approximately)
+-- Dumping data for table zoo.medics: ~2 rows (approximately)
 DELETE FROM `medics`;
 /*!40000 ALTER TABLE `medics` DISABLE KEYS */;
 INSERT INTO `medics` (`id_medic`, `firstname`, `surname`, `lastname`, `description`, `work`) VALUES
 	(1, 'Marina', 'Volodimirivna', 'Galushko', 'description2e2e2e2e', 'nach'),
-	(2, 'Lusya', 'Ivanovna', 'Petrova', 'descr', 'zam'),
-	(3, 'Болит', 'Иванович', 'Ай', 'это описание ', 'самый главный'),
-	(4, 'Иван', 'Петрович', 'Пупкин', 'ываыпукп', 'шланг');
+	(3, 'Болит', 'Иванович', 'Ай', 'это описание ', 'самый главный');
 /*!40000 ALTER TABLE `medics` ENABLE KEYS */;
 
 
@@ -355,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `priv` (
   PRIMARY KEY (`id_priv`),
   KEY `fk_priv_animals1` (`id_animal`),
   CONSTRAINT `fk_priv_animals1` FOREIGN KEY (`id_animal`) REFERENCES `animals` (`id_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.priv: ~12 rows (approximately)
 DELETE FROM `priv`;
@@ -367,12 +368,13 @@ INSERT INTO `priv` (`id_priv`, `date`, `description`, `id_animal`, `complete`, `
 	(4, '2013-05-29', 'цуацуацуа', 2, '0', '0'),
 	(5, '2019-06-20', 'egfrgergergerg', 2, '0', '0'),
 	(6, '2027-06-20', 'thrhrhtrh111111111111111111', 2, '0', '0'),
-	(7, '2015-06-20', 'kokoko', 9, '0', '1'),
+	(7, '2015-06-20', 'kokokoregerg', 9, '0', '1'),
 	(8, '2014-08-14', 'сказ\r\n', 2, '0', '1'),
 	(9, '2014-05-05', 'dsvsdvsdvsdv', 2, '1', '1'),
 	(10, '2014-07-23', ',titycndj', 2, '0', '1'),
 	(11, '2014-08-01', 'от бешенства', 5, '0', '1'),
-	(12, '2014-08-01', 'цуацуацуа', 4, '0', '1');
+	(12, '2014-08-01', 'цуацуацуа', 4, '0', '1'),
+	(13, '2014-08-15', 'ацуйацуа', 9, '0', '0');
 /*!40000 ALTER TABLE `priv` ENABLE KEYS */;
 
 
@@ -386,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `recomendations` (
   PRIMARY KEY (`id_recomendation`),
   KEY `id_anemnes` (`id_anemnes`),
   CONSTRAINT `FK_recomendations_anemneses` FOREIGN KEY (`id_anemnes`) REFERENCES `anemneses` (`id_anemnes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table zoo.recomendations: ~5 rows (approximately)
 DELETE FROM `recomendations`;
@@ -397,7 +399,8 @@ INSERT INTO `recomendations` (`id_recomendation`, `id_anemnes`, `rp`, `ds`) VALU
 	(10, 2, 'sdvsdvsdvsdv', 'dg dfbdfb dfb'),
 	(11, 1, 'dadada', 'yesyesyes'),
 	(13, 1, 'укпку', 'укпку'),
-	(14, 82, 'ergergergerg1111111111', 'ergergergergergergerg');
+	(14, 82, 'ergergergerg1111111111', 'ergergergergergergerg'),
+	(15, 79, 'ngffgh111', 'gfhgfh1111');
 /*!40000 ALTER TABLE `recomendations` ENABLE KEYS */;
 
 
@@ -408,18 +411,17 @@ CREATE TABLE IF NOT EXISTS `types` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table zoo.types: ~6 rows (approximately)
+-- Dumping data for table zoo.types: ~4 rows (approximately)
 DELETE FROM `types`;
 /*!40000 ALTER TABLE `types` DISABLE KEYS */;
 INSERT INTO `types` (`id_type`, `name`, `description`) VALUES
 	(1, 'Кот', ''),
-	(2, 'Dog', NULL),
-	(3, 'Goat', NULL),
+	(2, 'Собака', 'собачка'),
 	(4, 'Хомяк', 'животное'),
-	(5, 'бычок', 'уцацуацуа'),
-	(6, 'корова', '');
+	(6, 'корова', ''),
+	(7, 'Свинья', 'паця');
 /*!40000 ALTER TABLE `types` ENABLE KEYS */;
 
 
@@ -434,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL DEFAULT '0',
   `description` varchar(255) DEFAULT '0',
   `id_medic` int(10) DEFAULT NULL,
-  `role` int(10) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
@@ -442,9 +444,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id_user`, `login`, `firstname`, `surname`, `lastname`, `password`, `description`, `id_medic`, `role`) VALUES
-	(12, 'admin', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL, 0),
-	(14, 'manager', 'Дмитрий', 'Александрович', 'Галушко', '$2a$13$Lq4HXA3M4SeraEWuWH2Rj.oaT9oaP5ova1gT6HCX9UuCLqWsDy2Ie', 'admin of this site', NULL, 0),
-	(15, 'user', '0', '0', '0', '$2a$13$WfvHMLd52zbLd8muC.zBzelHOJr/z37sG83ebXRWf43LBSOFFeBAy', '0', NULL, 0);
+	(12, 'admin', '0', '0', '0', '$2a$13$r0KQM5QKc/sae2KTjsjDiOr7viXN7.xP80XWoKvKFr004D5E55uXW', '0', NULL, 'admin'),
+	(14, 'manager', 'Дмитрий', 'Александрович', 'Галушко', '$2a$13$Lq4HXA3M4SeraEWuWH2Rj.oaT9oaP5ova1gT6HCX9UuCLqWsDy2Ie', 'admin of this site', NULL, 'user'),
+	(15, 'user', '0', '0', '0', '$2a$13$WfvHMLd52zbLd8muC.zBzelHOJr/z37sG83ebXRWf43LBSOFFeBAy', '0', NULL, 'manager');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
