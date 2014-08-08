@@ -4,7 +4,11 @@ class ReportController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		if (Yii::app()->user->checkAccess('indexReport')) {
+			$this->render('index');
+		} else {
+			 throw new CHttpException(403, 'Нет доступа');
+		}
 	}
 
 	public function actionCountAnimal()

@@ -2,6 +2,7 @@
 
 class SiteController extends Controller
 {
+	public $layout='column2';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -35,6 +36,7 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
+		$this->layout = 'error';
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
