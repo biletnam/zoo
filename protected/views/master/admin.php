@@ -2,16 +2,6 @@
 /* @var $this MasterController */
 /* @var $model Master */
 
-/*$this->breadcrumbs=array(
-	'Владельцы'=>array('index'),
-	'Управление',
-);*/
-
-/*$this->menu=array(
-	array('label'=>'Список владельцев', 'url'=>array('index')),
-	array('label'=>'Добавить владельца', 'url'=>array('create')),
-);*/
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();

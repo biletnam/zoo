@@ -229,3 +229,7 @@ div.search-form {
 #report_type{
 	margin-bottom: 0px;
 }
+
+.search-form div.wide.form form div.row label{
+	width: 160px;
+}

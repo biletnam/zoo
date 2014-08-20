@@ -32,7 +32,6 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				//array('label'=>'Главная', 'url'=>array('/')),
 				array('label'=>'Главная', 'url'=>array('/master/index')),
 				array('label'=>'Доктора', 'url'=>array('/medic/index')),
 				array('label'=>'Типы животных', 'url'=>array('/type/index')),
@@ -42,9 +41,7 @@
 				array('label'=>'Войти', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
-			'htmlOptions' => array(
-                    'class'=>'nav nav-pills',
-                        ),
+			'htmlOptions' => array('class'=>'nav nav-pills',),
 		)); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>

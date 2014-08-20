@@ -1,9 +1,20 @@
 <?php
 /* @var $this MasterController */
 /* @var $dataProvider CActiveDataProvider */
+Yii::app()->clientScript->registerScript('load',
+				"$('#search-button').addClass('search-button btn btn-info')",
+				CClientScript::POS_END);
+
 Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
+$('#search-button').click(function(){
 	$('.search-form').toggle(500);
+	$(this).toggleClass('search-button btn btn-info','search-button btn btn-success');
+	/*$(this).toggle(function(){
+		$(this).removeClass('search-button btn btn-info').addClass('search-button btn btn-success');
+	},function(){
+		$(this).removeClass('search-button btn btn-success').addClass('search-button btn btn-info');
+	});*/
+	
 	return false;
 });
 $('.search-form form').submit(function(){
@@ -14,9 +25,6 @@ $('.search-form form').submit(function(){
 });
 ");
 
-/*$this->breadcrumbs=array(
-	'Список владельцев животных',
-);*/
 
 $this->menu=array(
 	array('label'=>'Добавить владельца', 'url'=>array('create')),
@@ -26,7 +34,7 @@ $this->menu=array(
 
 echo "<h3>Владельцы животных</h3>";
 
-echo CHtml::link('Поиск','#',array('class'=>'search-button btn btn-info'));
+echo CHtml::link('Поиск','#', array('id'=>'search-button'));
 echo "<div class='search-form' style='display:none'>";
 	$model_master = new Master("search");
 	$model_master->unsetAttributes(); 
@@ -40,7 +48,7 @@ echo "</div>";
         'lastname',
         'city'
     ),
-    'sorterHeader'=>'Сортировка',
+    'sorterHeader'=>'<small>Сортировка:</small>',
     'id' => 'masters-list',
-    'summaryText' => 'Показано с {start} по {end} из {count} записей',
+    'summaryText' => '<small>Показано с <strong>{start}</strong> по <strong>{end}</strong> из <strong>{count}</strong> записей</small>',
 )); 

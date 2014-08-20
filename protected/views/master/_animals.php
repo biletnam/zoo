@@ -8,7 +8,7 @@ $dataProvider=new CArrayDataProvider($animals,array(
 $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view_animals',
-	'summaryText' => 'Показано с {start} по {end} из {count} записей',
+	'summaryText' => '<small>Показано с <strong>{start}</strong> по <strong>{end}</strong> из <strong>{count}</strong> записей</small>',
 ));
 
 ?>

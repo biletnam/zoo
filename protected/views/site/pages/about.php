@@ -2,6 +2,7 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name . ' - О программе';
+
 $this->breadcrumbs=array(
 	'О программе',
 );

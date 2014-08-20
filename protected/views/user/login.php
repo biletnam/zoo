@@ -1,3 +1,5 @@
+<?php $this->pageTitle = Yii::app()->name . ' - Вход'; ?>
+
 <h1>Вход</h1>
 
 <div class="form">

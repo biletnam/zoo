@@ -8,14 +8,11 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Кабинет ветеринарного врача',
-	//'defaultController' => 'master',
 	'defaultController' => 'user/login',
 	'language' => 'ru',
 
-	// preloading 'log' component
 	'preload'=>array('log'),
 
-	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
@@ -23,12 +20,9 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'789789',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		
@@ -51,11 +45,6 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
-			/*'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),*/
 			'rules'=>array(
 				''=>'master/index',
 				'animal/create/<id_master:\d+>'=>'animal/create',
@@ -64,28 +53,15 @@ return array(
 				'cure/create/<id_anemnes:\d+>'=>'cure/create',
 				'recomendation/create/<id_anemnes:\d+>'=>'recomendation/create',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				//'<controller:\w+>/<action:\w+>/<id_anemnes:\d+>'=>'<controller>/<action>',
-				
-				//'<controller:\w+>/<action:\w+>/<id_master:\d+>'=>'<controller>/<action>',
 			),
 		),
-		
-		/*
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		*/
-		// uncomment the following to use a MySQL database
-		
+						
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=zoo',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-			//array(
-		    //  'class'=>'CWebLogRoute',
-		    //  ),
 		),
 		
 		'errorHandler'=>array(

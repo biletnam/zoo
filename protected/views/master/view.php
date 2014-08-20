@@ -8,11 +8,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	//array('label'=>'Список владельцев', 'url'=>array('index')),
 	array('label'=>'Добавить нового владельца', 'url'=>array('create')),
 	array('label'=>'Добавить животное', 'url'=>array('animal/create','id_master'=>$model->id_master)),
 	array('label'=>'Редактировать владельца', 'url'=>array('update', 'id'=>$model->id_master)),
-	//array('label'=>'Удалить владельца', 'url'=>array('master/delete'), 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_master),'confirm'=>'Вы уверены что хотите удалить данные?')),
 	array('label'=>'Удалить владельца', 'url'=>array('delete', 'id'=>$model->id_master), 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_master),'confirm'=>'Вы уверены что хотите удалить данные?')),
 	array('label'=>'Управление', 'url'=>array('admin')),
 );

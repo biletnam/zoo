@@ -9,7 +9,6 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl('/search/index'),
 	'method'=>'get',
-	//'htmlOptions'=>array('class'=>'bg-info'),
 )); 
 
 $model_master = new Master("search");
@@ -19,7 +18,6 @@ $model_animal = new Animal("search");
 $model_animal->unsetAttributes();
 
 ?>
-
 
 	<div class="row">
 		<?php echo $form->label($model_master,'lastname'); ?>
@@ -41,16 +39,6 @@ $model_animal->unsetAttributes();
 		<?php echo $form->textField($model_animal,'name',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
-	<div class="row"><!--animal sex-->
-		<?php echo $form->label($model_animal,'sex'); ?>
-		<?php echo $form->textField($model_animal,'sex'); ?>
-	</div>
-
-	<div class="row">
-		<?php //echo $form->label($model,'id_type'); ?>
-		<?php //echo $form->textField($model,'id_type'); ?>
-	</div>
-
 	<div class="row"><!--animal age-->
 		<?php echo $form->label($model_animal,'age'); ?>
 		<?php echo $form->textField($model_animal,'age'); ?>
@@ -59,21 +47,6 @@ $model_animal->unsetAttributes();
 	<div class="row">
 		<?php echo $form->label($model_animal,'reg_num'); ?>
 		<?php echo $form->textField($model_animal,'reg_num',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model_animal,'date_reg'); ?>
-		<?php echo $form->textField($model_animal,'date_reg'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model_animal,'date_death'); ?>
-		<?php echo $form->textField($model_animal,'date_death'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">
